@@ -5,10 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".signin">
-    <TextView
-        android:layout_width="match_parent"
+    <View
+        android:id="@+id/myRectangleView"
+        android:layout_width="300dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="400dp"
+        android:background="@drawable/rectangle"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_below="@+id/myRectangleView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SIGN IN"
-        />
+        android:layout_alignParentBottom="true"
+        android:text="Sign in" />
+
+    <!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="30dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:text="SIGN IN"-->
+<!--        android:id="@+id/signintext"-->
+<!--        />-->
+<!--    <EditText-->
+<!--        android:id = "@+id/editText1"-->
+<!--        android:layout_width = "wrap_content"-->
+<!--        android:layout_height = "wrap_content"-->
+<!--        android:layout_below="@+id/signintext"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:textSize="20dp"-->
+<!--        android:text="USERNAME"-->
+<!--    />-->
+
+<!--    <EditText-->
+<!--        android:id = "@+id/editText2"-->
+<!--        android:layout_below="@+id/editText1"-->
+<!--        android:layout_width = "wrap_content"-->
+<!--        android:layout_height = "wrap_content"-->
+<!--        android:text="PASSWORD"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        />-->
+
 
 </RelativeLayout>
