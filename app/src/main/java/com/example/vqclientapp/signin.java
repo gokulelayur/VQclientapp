@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class signin extends AppCompatActivity {
 
     private TextView signup;
-    String eid,passwd;
+    String eid,passwd,uname;
     private FirebaseAuth auth;
 
     @Override
@@ -41,7 +41,10 @@ public class signin extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
+                            uname=eid.replace("@","0");
+                            uname=uname.replace(".","1");
                             Intent signinsuccessful = new Intent(signin.this, homePage.class);
+                            signinsuccessful.putExtra("uname",uname);
                             startActivity(signinsuccessful);
                             Toast.makeText(signin.this, "Success", Toast.LENGTH_SHORT).show();
                             finish();

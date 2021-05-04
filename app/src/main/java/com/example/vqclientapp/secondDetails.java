@@ -81,6 +81,7 @@ public class secondDetails extends AppCompatActivity {
                             if(task.isSuccessful()){
 
                                 Intent signupSuccessful =new Intent(secondDetails.this,homePage.class);
+                                signupSuccessful.putExtra("uname",uname);
                                 startActivity(signupSuccessful);
                                 finish();
                             }
