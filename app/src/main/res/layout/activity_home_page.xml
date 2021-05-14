@@ -5,31 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".homePage">
+
     <LinearLayout
+        android:id="@+id/homeHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/homeHeader"
-        >
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ADD DEPT"
-            android:id="@+id/homeAddDept"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@+id/homeHeader"
-        >
-        <TextView
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/homeAddDept"
+            android:layout_width="219dp"
+            android:layout_height="wrap_content"
+            android:text="ADD DEPT" />
+    </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="SHOW DEPTS"></TextView>
+            android:layout_below="@+id/homeHeader">
 
-    </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/deptRecycler"/>
+
+        </LinearLayout>
+
+
 </RelativeLayout>

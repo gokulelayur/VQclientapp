@@ -9,11 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VQClientapp">
-        <activity android:name=".addDepartment"></activity>
+        <activity android:name=".addDepartment"/>
         <activity android:name=".secondDetails" />
         <activity android:name=".firstDetails" />
         <activity android:name=".homePage" />
-        <activity android:name=".signup" />
         <activity android:name=".signin" />
         <activity android:name=".MainActivity">
             <intent-filter>

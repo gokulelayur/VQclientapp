@@ -55,7 +55,7 @@ public class secondDetails extends AppCompatActivity {
             desc=extras.getString("extraDescript");
             mapLink=extras.getString("extraMap");
             }
-        };
+        }
 
         butt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +100,7 @@ public class secondDetails extends AppCompatActivity {
         String temp;
         temp=eid.replace("@","0");
         temp=temp.replace(".","1");
-        Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
         return temp;
     }
 
