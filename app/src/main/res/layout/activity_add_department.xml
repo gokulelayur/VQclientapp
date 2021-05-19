@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/maxTokens"
-            />
+            android:inputType="number"/>
     </LinearLayout>
 
     <LinearLayout
@@ -58,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/deptDescription"
+            android:inputType="text"
             />
     </LinearLayout>
 
@@ -76,6 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/startTime"
+            android:inputType="time"
             />
 
 
@@ -96,6 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/endtime"
+            android:inputType="time|datetime"
             />
 
 
@@ -111,12 +114,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Avg Time : "
+            android:text="Avg Time (Mins): "
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/avgtime"
+            android:inputType="number"
             />
 
 
@@ -132,17 +136,19 @@
         android:gravity="center"
         >
         <Button
-            android:layout_width="500px"
-            android:layout_height="150px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/addMoreDeptButt"
             android:text="Add more"
+            android:textStyle="bold"
             android:layout_marginRight="10dp"
             />
         <Button
-            android:layout_width="500px"
-            android:layout_height="150px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Done"
+            android:textStyle="bold"
             android:id="@+id/doneDeptDetailsbutt"
-            android:layout_marginLeft="10dp"></Button>
+            android:layout_marginStart="10dp"/>
     </LinearLayout>
 </RelativeLayout>
