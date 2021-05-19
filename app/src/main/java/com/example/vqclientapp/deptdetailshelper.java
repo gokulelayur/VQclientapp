@@ -2,6 +2,7 @@ package com.example.vqclientapp;
 
 public class deptdetailshelper {
     String name,descript,maxtokens,st,et,avgt;
+    boolean verified;
 
     public deptdetailshelper() {
     }
@@ -13,6 +14,7 @@ public class deptdetailshelper {
         this.st = st;
         this.et = et;
         this.avgt = avgt;
+        this.verified=false;
     }
 
     public String getName() {
@@ -61,5 +63,13 @@ public class deptdetailshelper {
 
     public void setAvgt(String avgt) {
         this.avgt = avgt;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 }

@@ -39,7 +39,7 @@ public class adapterDepts extends RecyclerView.Adapter<adapterDepts.Viewholder>{
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         department dep=deptlist.get(position);
-        holder.deptname.setText(dep.getName());
+        holder.deptname.setText(dep.getName().toUpperCase());
     }
 
     @Override

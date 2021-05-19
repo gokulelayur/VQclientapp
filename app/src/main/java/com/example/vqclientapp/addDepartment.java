@@ -95,10 +95,12 @@ public class addDepartment extends AppCompatActivity {
     }
 
     private boolean isvalid(String name, String descript, String maxtokens, String st, String et, String avgt) {
-        if(name!=null && descript!=null && maxtokens!=null && st!=null && et!=null && avgt!=null){
+        if(name!="" && descript!="" && maxtokens!="" && st!="" && et!="" && avgt!=""){
+            Toast.makeText(this, "avgt: \"" +avgt+"\"", Toast.LENGTH_SHORT).show();
             return(true);
         }
         else{
+            Toast.makeText(this, "avgt: \"" +avgt+"\"", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
