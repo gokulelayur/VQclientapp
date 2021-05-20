@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class homePage extends AppCompatActivity {
+public class homePage extends AppCompatActivity implements adapterDepts.deptListListner {
     String uname;
     RecyclerView recyclerView;
     adapterDepts depAd;
@@ -59,7 +59,7 @@ public class homePage extends AppCompatActivity {
 
         departmentArrayList = new ArrayList<>();
 
-        depAd= new adapterDepts(departmentArrayList,this);
+        depAd= new adapterDepts(departmentArrayList,this,this);
         recyclerView.setAdapter(depAd);
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -93,5 +93,15 @@ public class homePage extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onDeptListClick(int position) {
+        department passdep= departmentArrayList.get(position);
+        Intent deptListClicked=new Intent(homePage.this,testactivitity.class);
+        deptListClicked.putExtra("passdep",passdep);
+        deptListClicked.putExtra("uname",uname);
+//        Toast.makeText(this, "clicked position:"+position, Toast.LENGTH_LONG).show();
+        startActivity(deptListClicked);
     }
 }

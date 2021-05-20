@@ -19,10 +19,12 @@ public class adapterDepts extends RecyclerView.Adapter<adapterDepts.Viewholder>{
 
     ArrayList<department> deptlist;
     Context context;
+    private deptListListner deptListListner;
 
-    public adapterDepts(ArrayList<department> deptlist, Context context) {
+    public adapterDepts(ArrayList<department> deptlist, Context context,deptListListner deptListListner) {
         this.deptlist = deptlist;
         this.context = context;
+        this.deptListListner=deptListListner;
     }
 
     @NonNull
@@ -33,7 +35,7 @@ public class adapterDepts extends RecyclerView.Adapter<adapterDepts.Viewholder>{
         LayoutInflater layoutInflater=LayoutInflater.from(context);
         View view=layoutInflater.inflate(R.layout.row_item,parent,false);
 
-        return new Viewholder(view);
+        return new Viewholder(view,deptListListner);
     }
 
     @Override
@@ -47,16 +49,27 @@ public class adapterDepts extends RecyclerView.Adapter<adapterDepts.Viewholder>{
         return deptlist.size();
     }
 
-    class Viewholder extends RecyclerView.ViewHolder {
+    class Viewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView img;
         TextView deptname;
+        deptListListner listnerDeptList;
 
-        public Viewholder(@NonNull View itemView) {
+        public Viewholder(@NonNull View itemView, deptListListner listnerDeptList) {
             super(itemView);
     //        img=itemView.findViewById(R.id.deptIcon);
             deptname=itemView.findViewById(R.id.deptName);
+            this.listnerDeptList=listnerDeptList;
 
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            listnerDeptList.onDeptListClick(getAdapterPosition());
+        }
+    }
+    public interface deptListListner{
+        void onDeptListClick(int position);
     }
 }
