@@ -98,10 +98,9 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
     @Override
     public void onDeptListClick(int position) {
         department passdep= departmentArrayList.get(position);
-        Intent deptListClicked=new Intent(homePage.this,testactivitity.class);
+        Intent deptListClicked=new Intent(homePage.this,departmenthome.class);
         deptListClicked.putExtra("passdep",passdep);
         deptListClicked.putExtra("uname",uname);
-//        Toast.makeText(this, "clicked position:"+position, Toast.LENGTH_LONG).show();
         startActivity(deptListClicked);
     }
 }

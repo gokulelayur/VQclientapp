@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -17,16 +18,38 @@ import org.jetbrains.annotations.NotNull;
 
 public class departmenthome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
+    department thisdepartment;
+    String uname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_departmenthome);
+
+        Bundle extras;
+        if(savedInstanceState == null){
+            extras =getIntent().getExtras();
+            if(extras==null){
+                uname=null;
+            }
+            else{
+                uname=extras.getString("uname");
+                thisdepartment=(com.example.vqclientapp.department) getIntent().getSerializableExtra("passdep");
+            }
+        }
+
+
+
         Toolbar toolbar = findViewById(R.id.depthometoolbar);
         setSupportActionBar(toolbar);
+
+
         drawer = findViewById(R.id.dept_drawer_layout);
         NavigationView navigationView = findViewById(R.id.dept_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerview= navigationView.getHeaderView(0);
+        TextView drawerCompanyName=(TextView) headerview.findViewById(R.id.drawer_comp_name);
+        drawerCompanyName.setText(thisdepartment.getName().toUpperCase());
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
