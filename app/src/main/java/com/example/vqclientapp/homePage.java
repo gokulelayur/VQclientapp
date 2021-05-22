@@ -47,6 +47,7 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
                 uname=extras.getString("uname");
             }
         }
+        SaveId.setId(this,uname);
 
         recyclerView=findViewById(R.id.deptRecycler);
 

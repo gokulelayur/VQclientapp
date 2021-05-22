@@ -37,6 +37,7 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
                 thisdepartment=(com.example.vqclientapp.department) getIntent().getSerializableExtra("passdep");
             }
         }
+        SaveId.setDepID(this,thisdepartment.getName());
 
 
 
@@ -48,7 +49,7 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
         NavigationView navigationView = findViewById(R.id.dept_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerview= navigationView.getHeaderView(0);
-        TextView drawerCompanyName=(TextView) headerview.findViewById(R.id.drawer_comp_name);
+        TextView drawerCompanyName= headerview.findViewById(R.id.drawer_comp_name);
         drawerCompanyName.setText(thisdepartment.getName().toUpperCase());
 
 
@@ -61,8 +62,6 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
                     new homeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-//        TextView drawerCompName=findViewById(R.id.drawer_comp_name);
-//        drawerComp.setText();\
 
     }
 

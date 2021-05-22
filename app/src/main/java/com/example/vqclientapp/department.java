@@ -4,10 +4,30 @@ package com.example.vqclientapp;
 import java.io.Serializable;
 
 public class department implements Serializable {
-    String name,descript,maxtokens,st,et,avgt;
+    String name, descript, st, et;
+    int avgt;
+    int maxtokens;
+    int currenttoken;
+    int nextavailabletoken;
     boolean verified;
+    boolean activenow;
 
-    public String getMaxtokens() {
+    public department() {
+    }
+
+    public department(String name, String descript, int maxtokens, String st, String et, int avgt) {
+        this.activenow = false;
+        this.currenttoken = -1;
+        this.nextavailabletoken = -1;
+        this.name = name;
+        this.descript = descript;
+        this.st = st;
+        this.et = et;
+        this.avgt = avgt;
+        this.maxtokens = maxtokens;
+    }
+
+    public int getMaxtokens() {
         return maxtokens;
     }
 
@@ -27,7 +47,7 @@ public class department implements Serializable {
         return et;
     }
 
-    public String getAvgt() {
+    public int getAvgt() {
         return avgt;
     }
 
@@ -39,7 +59,7 @@ public class department implements Serializable {
         this.descript = descript;
     }
 
-    public void setMaxtokens(String maxtokens) {
+    public void setMaxtokens(int maxtokens) {
         this.maxtokens = maxtokens;
     }
 
@@ -51,11 +71,35 @@ public class department implements Serializable {
         this.et = et;
     }
 
-    public void setAvgt(String avgt) {
+    public void setAvgt(int avgt) {
         this.avgt = avgt;
     }
 
-    public void setVerified(boolean verified) {
-        this.verified = verified;
+    public int getCurrenttoken() {
+        return currenttoken;
+    }
+
+    public void setCurrenttoken(int currenttoken) {
+        this.currenttoken = currenttoken;
+    }
+
+    public int getNextavailabletoken() {
+        return nextavailabletoken;
+    }
+
+    public void setNextavailabletoken(int nextavailabletoken) {
+        this.nextavailabletoken = nextavailabletoken;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public boolean isActivenow() {
+        return activenow;
+    }
+
+    public void setActivenow(boolean activenow) {
+        this.activenow = activenow;
     }
 }

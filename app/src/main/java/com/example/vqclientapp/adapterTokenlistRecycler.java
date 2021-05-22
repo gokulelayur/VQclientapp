@@ -10,7 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenlistRecycler.Viewholder> {
+
+    ArrayList<token> tokenlist;
+
+    public adapterTokenlistRecycler(ArrayList<token> tokenlist) {
+        this.tokenlist = tokenlist;
+    }
 
     @NonNull
     @NotNull
@@ -22,12 +30,13 @@ public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenl
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull Viewholder holder, int position) {
-
+        token token=tokenlist.get(position);
+        holder.tokendet.setText(token.getTokenName());
     }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return tokenlist.size();
     }
 
     class Viewholder extends RecyclerView.ViewHolder{
