@@ -33,12 +33,12 @@ public class adapterQueueRecycler extends RecyclerView.Adapter<adapterQueueRecyc
 
     class Viewholder extends RecyclerView.ViewHolder{
 
-        TextView depname;
+        TextView tokenName;
 
         public Viewholder(@NonNull @NotNull View itemView) {
             super(itemView);
 
-            depname=itemView.findViewById(R.id.queueRecyclerRow);
+            tokenName=itemView.findViewById(R.id.queuetokenName);
         }
     }
 }

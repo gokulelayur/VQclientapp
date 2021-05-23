@@ -30,8 +30,6 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     ArrayList<department> departmentArrayList;
-    boolean flag;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

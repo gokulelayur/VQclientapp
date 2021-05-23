@@ -1,6 +1,7 @@
 package com.example.vqclientapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class tokenlistFragment extends Fragment {
                 for (DataSnapshot snap: snapshot.getChildren()) {
                     token dep=snap.getValue(token.class);
                     tokenArrayList.add(dep);
+                    Log.d("tokenArrayListchange", "added: "+tokenArrayList.get(0).tokenNo);
 
                 }
                 adapterTokenlistRecycler.notifyDataSetChanged();

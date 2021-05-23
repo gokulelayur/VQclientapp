@@ -31,7 +31,8 @@ public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenl
     @Override
     public void onBindViewHolder(@NonNull @NotNull Viewholder holder, int position) {
         token token=tokenlist.get(position);
-        holder.tokendet.setText(token.getTokenName());
+        holder.tokenName.setText(token.getTokenName());
+        holder.tokenNo.setText(String.valueOf(token.getTokenNo()));
     }
 
     @Override
@@ -41,12 +42,14 @@ public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenl
 
     class Viewholder extends RecyclerView.ViewHolder{
 
-        TextView tokendet;
+        TextView tokenName,tokenNo;
 
 
         public Viewholder(@NonNull @NotNull View itemView) {
             super(itemView);
-            tokendet=itemView.findViewById(R.id.tokenlistRecyclerRow);
+            tokenName=itemView.findViewById(R.id.tokenlisttokenName);
+            tokenNo=itemView.findViewById(R.id.tokenlisttokenNo);
+
         }
     }
 }
