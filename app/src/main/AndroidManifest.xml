@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VQClientapp">
         <activity android:name=".departmenthome"/>
-        <activity android:name=".testactivitity" />
         <activity android:name=".addDepartment" />
         <activity android:name=".secondDetails" />
         <activity android:name=".firstDetails" />

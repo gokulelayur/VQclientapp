@@ -1,9 +1,12 @@
 package com.example.vqclientapp;
 
+import android.app.Dialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +23,8 @@ public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenl
         this.tokenlist = tokenlist;
     }
 
+
+
     @NonNull
     @NotNull
     @Override
@@ -33,6 +38,39 @@ public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenl
         token token=tokenlist.get(position);
         holder.tokenName.setText(token.getTokenName());
         holder.tokenNo.setText(String.valueOf(token.getTokenNo()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                Toast.makeText(v.getContext(), "", Toast.LENGTH_SHORT).show();
+
+                Dialog tokendetailsdialog;
+
+                tokendetailsdialog=new Dialog(v.getContext());
+                ImageView closeimg;
+                TextView tokenNo,tokenName,tokenPlace,tokenAge;
+                tokendetailsdialog.setContentView(R.layout.tokendetailspopup);
+                closeimg=tokendetailsdialog.findViewById(R.id.popupClosebuttImg);
+                tokenNo= tokendetailsdialog.findViewById(R.id.popUpTokenNo);
+                tokenName=tokendetailsdialog.findViewById(R.id.popUpTokenName);
+                tokenAge=tokendetailsdialog.findViewById(R.id.popUpTokenAge);
+                tokenPlace=tokendetailsdialog.findViewById(R.id.popUpTokenPlace);
+                tokenNo.setText(String.valueOf(token.getTokenNo()));
+                tokenName.setText(token.getTokenName());
+                tokenAge.setText(String.valueOf(token.getTokenAge()));
+                tokenPlace.setText(token.getTokenPlace());
+                closeimg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        tokendetailsdialog.dismiss();
+                    }
+                });
+
+                tokendetailsdialog.show();
+
+
+            }
+        });
     }
 
     @Override
@@ -49,7 +87,6 @@ public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenl
             super(itemView);
             tokenName=itemView.findViewById(R.id.tokenlisttokenName);
             tokenNo=itemView.findViewById(R.id.tokenlisttokenNo);
-
         }
     }
 }

@@ -3,9 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="77dp"
     android:orientation="horizontal"
-    android:background="@color/white">
+    android:background="@color/ms_material_grey_400">
+
+
+    <TextView
+        android:id="@+id/queuetokenNo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="44"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:background="@drawable/token_circle"
+        android:layout_weight="4"
+        android:layout_margin="15dp"/>
 
 
     <TextView
@@ -15,7 +29,8 @@
         android:gravity="center_vertical"
         android:paddingStart="25dp"
         android:text="Token Details"
-        android:textSize="30sp"
+        android:textSize="13sp"
         android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_weight="1"/>
 </LinearLayout>

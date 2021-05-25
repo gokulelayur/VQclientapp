@@ -1,8 +1,8 @@
 package com.example.vqclientapp;
 
 public class token {
-    String tokenName;
-    int tokenNo;
+    String tokenName,tokenPlace;
+    int tokenNo,tokenAge;
 
     public String getTokenName() {
         return tokenName;
@@ -19,5 +19,21 @@ public class token {
 
     public void setTokenNo(int tokenNo) {
         this.tokenNo = tokenNo;
+    }
+
+    public String getTokenPlace() {
+        return tokenPlace;
+    }
+
+    public void setTokenPlace(String tokenPlace) {
+        this.tokenPlace = tokenPlace;
+    }
+
+    public int getTokenAge() {
+        return tokenAge;
+    }
+
+    public void setTokenAge(int tokenAge) {
+        this.tokenAge = tokenAge;
     }
 }
