@@ -9,7 +9,6 @@ public class department implements Serializable {
     int maxtokens;
     int currenttoken;
     int nextavailabletoken;
-    boolean verified;
     boolean activenow;
 
     public department() {
@@ -91,9 +90,6 @@ public class department implements Serializable {
         this.nextavailabletoken = nextavailabletoken;
     }
 
-    public boolean isVerified() {
-        return verified;
-    }
 
     public boolean isActivenow() {
         return activenow;

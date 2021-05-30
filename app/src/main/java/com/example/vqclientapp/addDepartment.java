@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -56,8 +57,15 @@ public class addDepartment extends AppCompatActivity {
                 if (isvalid(name, descript, maxtokens, st, et, avgt)) {
                     department help = new department(name, descript, maxtokens, st, et, avgt);
                     rootNode = FirebaseDatabase.getInstance();
-                    ref = rootNode.getReference("main").child("company").child(uname).child("department");
-                    ref.child(name).setValue(help);
+                    ref = rootNode.getReference("main").child("unverified").child(uname);
+                    ref.child(name).setValue(help).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(addDepartment.this, "Department added successfully", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
                     Intent it = new Intent(addDepartment.this, homePage.class);
                     it.putExtra("uname", uname);
                     startActivity(it);
@@ -82,8 +90,15 @@ public class addDepartment extends AppCompatActivity {
                     department help = new department(name, descript, maxtokens, st, et, avgt);
                     Toast.makeText(addDepartment.this, "currenttok: ", Toast.LENGTH_SHORT).show();
                     rootNode = FirebaseDatabase.getInstance();
-                    ref = rootNode.getReference("main").child("company").child(uname).child("department");
-                    ref.child(name).setValue(help);
+                    ref = rootNode.getReference("main").child("unverified").child(uname);
+                    ref.child(name).setValue(help).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(addDepartment.this, "Department added successfully", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
                     Intent it = new Intent(addDepartment.this, addDepartment.class);
                     it.putExtra("uname", uname);
                     startActivity(it);

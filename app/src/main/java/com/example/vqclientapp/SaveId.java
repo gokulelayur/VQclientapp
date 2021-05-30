@@ -21,7 +21,7 @@ public class SaveId {
     }
 
     public static String getId(Context ctx) {
-        return getSharedPreferences(ctx).getString(ID, "");
+        return getSharedPreferences(ctx).getString(ID, "defaut");
     }
 
     public static void setDepID(Context ctx,String value){
@@ -30,6 +30,6 @@ public class SaveId {
         editor.commit();
     }
     public  static String getDepID(Context ctx){
-        return getSharedPreferences(ctx).getString(depID,"");
+        return getSharedPreferences(ctx).getString(depID,"defaut");
     }
 }
