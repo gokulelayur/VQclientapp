@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -27,18 +30,16 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
         setContentView(R.layout.activity_departmenthome);
 
         Bundle extras;
-        if(savedInstanceState == null){
-            extras =getIntent().getExtras();
-            if(extras==null){
-                uname=null;
-            }
-            else{
-                uname=extras.getString("uname");
-                thisdepartment=(com.example.vqclientapp.department) getIntent().getSerializableExtra("passdep");
+        if (savedInstanceState == null) {
+            extras = getIntent().getExtras();
+            if (extras == null) {
+                uname = null;
+            } else {
+                uname = extras.getString("uname");
+                thisdepartment = (com.example.vqclientapp.department) getIntent().getSerializableExtra("passdep");
             }
         }
-        SaveId.setDepID(this,thisdepartment.getName());
-
+        SaveId.setDepID(this, thisdepartment.getName());
 
 
         Toolbar toolbar = findViewById(R.id.depthometoolbar);
@@ -48,8 +49,8 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
         drawer = findViewById(R.id.dept_drawer_layout);
         NavigationView navigationView = findViewById(R.id.dept_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        View headerview= navigationView.getHeaderView(0);
-        TextView drawerCompanyName= headerview.findViewById(R.id.drawer_comp_name);
+        View headerview = navigationView.getHeaderView(0);
+        TextView drawerCompanyName = headerview.findViewById(R.id.drawer_comp_name);
         drawerCompanyName.setText(thisdepartment.getName().toUpperCase());
 
 
@@ -71,6 +72,7 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new homeFragment()).commit();
+
                 break;
             case R.id.nav_tokenlist:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

@@ -1,6 +1,7 @@
 package com.example.vqclientapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,40 +30,38 @@ public class tokenlistFragment extends Fragment {
     ArrayList<token> tokenArrayList;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
-    String uname,depID;
+    String uname, depID;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_tokenlist,container,false);
-        recyclerView=view.findViewById(R.id.toklistRecycler);
+        View view = inflater.inflate(R.layout.fragment_tokenlist, container, false);
+        recyclerView = view.findViewById(R.id.toklistRecycler);
 
 
-        tokenArrayList=new ArrayList<>();
-        uname=SaveId.getId(getContext());
-        depID=SaveId.getDepID(getContext());
-        rootNode=FirebaseDatabase.getInstance();
-        reference=rootNode.getReference("main").child("company").child(uname).child("department").child(depID).child("TOKEN");
+        tokenArrayList = new ArrayList<>();
+        uname = SaveId.getId(getContext());
+        depID = SaveId.getDepID(getContext());
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("main").child("company").child(uname).child("department").child(depID).child("TOKEN");
 
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        adapterTokenlistRecycler=new adapterTokenlistRecycler(tokenArrayList);
+        adapterTokenlistRecycler = new adapterTokenlistRecycler(tokenArrayList);
         recyclerView.setAdapter(adapterTokenlistRecycler);
-
 
 
         reference.orderByChild("tokenNo").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
 
-                for (DataSnapshot snap: snapshot.getChildren()) {
-                    token dep=snap.getValue(token.class);
-                    tokenArrayList.add(dep);
-
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    token token = snap.getValue(token.class);
+                    tokenArrayList.add(token);
                 }
                 adapterTokenlistRecycler.notifyDataSetChanged();
             }
@@ -72,7 +71,6 @@ public class tokenlistFragment extends Fragment {
 
             }
         });
-
 
 
         return view;

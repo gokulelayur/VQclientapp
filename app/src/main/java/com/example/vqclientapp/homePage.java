@@ -30,42 +30,42 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     ArrayList<department> departmentArrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
         Bundle extras;
-        if(savedInstanceState == null){
-            extras =getIntent().getExtras();
-            if(extras==null){
-                uname=null;
-            }
-            else{
-                uname=extras.getString("uname");
+        if (savedInstanceState == null) {
+            extras = getIntent().getExtras();
+            if (extras == null) {
+                uname = null;
+            } else {
+                uname = extras.getString("uname");
             }
         }
-        SaveId.setId(this,uname);
+        SaveId.setId(this, uname);
 
-        recyclerView=findViewById(R.id.deptRecycler);
+        recyclerView = findViewById(R.id.deptRecycler);
 
-        rootNode=FirebaseDatabase.getInstance();
-        reference=rootNode.getReference("main").child("company").child(uname).child("department");
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("main").child("company").child(uname).child("department");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DividerItemDecoration sep=new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+        DividerItemDecoration sep = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(sep);
 
         departmentArrayList = new ArrayList<>();
 
-        depAd= new adapterDepts(departmentArrayList,this,this);
+        depAd = new adapterDepts(departmentArrayList, this, this);
         recyclerView.setAdapter(depAd);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap: snapshot.getChildren()) {
-                    department dep=snap.getValue(department.class);
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    department dep = snap.getValue(department.class);
                     departmentArrayList.add(dep);
 
                 }
@@ -79,27 +79,25 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
         });
 
 
-
         Button addDept = findViewById(R.id.homeAddDept);
         addDept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent gotoadddept = new Intent(homePage.this, addDepartment.class);
-                gotoadddept.putExtra("uname",uname);
+                gotoadddept.putExtra("uname", uname);
                 startActivity(gotoadddept);
             }
         });
-
 
 
     }
 
     @Override
     public void onDeptListClick(int position) {
-        department passdep= departmentArrayList.get(position);
-        Intent deptListClicked=new Intent(homePage.this,departmenthome.class);
-        deptListClicked.putExtra("passdep",passdep);
-        deptListClicked.putExtra("uname",uname);
+        department passdep = departmentArrayList.get(position);
+        Intent deptListClicked = new Intent(homePage.this, departmenthome.class);
+        deptListClicked.putExtra("passdep", passdep);
+        deptListClicked.putExtra("uname", uname);
         startActivity(deptListClicked);
     }
 }

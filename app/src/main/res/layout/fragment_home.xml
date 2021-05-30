@@ -2,77 +2,83 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_background"
-    android:orientation="vertical"
     android:layout_centerHorizontal="true"
-    android:gravity="center_horizontal">
+    android:background="@color/light_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
 
     <RelativeLayout
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@drawable/token_circle"
-        android:layout_marginTop="50dp">
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="38dp"
+        android:background="@drawable/token_circle">
+
         <TextView
+            android:id="@+id/display_current_token"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/display_current_token"
+            android:layout_centerInParent="true"
             android:text="No."
             android:textColor="@color/black"
-            android:textSize="50sp"
-            android:layout_centerInParent="true"/>
+            android:textSize="35sp" />
 
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:orientation="horizontal">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button1"/>
+            android:text="PASS" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="button2"/>
+            android:text="NEXT TOKEN" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="270dp"
-        android:layout_height="370dp"
+        android:layout_height="340dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/listview_token_queue"
         android:gravity="top"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HEADER Comes HERE"
                 android:background="@color/black"
-                android:textColor="@color/white"/>
+                android:text="HEADER Comes HERE"
+                android:textColor="@color/white" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/queueRecycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/queueRecycler">
+                android:layout_height="match_parent">
 
             </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

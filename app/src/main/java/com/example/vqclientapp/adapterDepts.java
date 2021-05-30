@@ -15,16 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class adapterDepts extends RecyclerView.Adapter<adapterDepts.Viewholder>{
+public class adapterDepts extends RecyclerView.Adapter<adapterDepts.Viewholder> {
 
     ArrayList<department> deptlist;
     Context context;
     private deptListListner deptListListner;
 
-    public adapterDepts(ArrayList<department> deptlist, Context context,deptListListner deptListListner) {
+    public adapterDepts(ArrayList<department> deptlist, Context context, deptListListner deptListListner) {
         this.deptlist = deptlist;
         this.context = context;
-        this.deptListListner=deptListListner;
+        this.deptListListner = deptListListner;
     }
 
     @NonNull
@@ -32,15 +32,15 @@ public class adapterDepts extends RecyclerView.Adapter<adapterDepts.Viewholder>{
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-        LayoutInflater layoutInflater=LayoutInflater.from(context);
-        View view=layoutInflater.inflate(R.layout.row_item,parent,false);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View view = layoutInflater.inflate(R.layout.row_item, parent, false);
 
-        return new Viewholder(view,deptListListner);
+        return new Viewholder(view, deptListListner);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-        department dep=deptlist.get(position);
+        department dep = deptlist.get(position);
         holder.deptname.setText(dep.getName().toUpperCase());
     }
 
@@ -57,9 +57,9 @@ public class adapterDepts extends RecyclerView.Adapter<adapterDepts.Viewholder>{
 
         public Viewholder(@NonNull View itemView, deptListListner listnerDeptList) {
             super(itemView);
-    //        img=itemView.findViewById(R.id.deptIcon);
-            deptname=itemView.findViewById(R.id.deptName);
-            this.listnerDeptList=listnerDeptList;
+            //        img=itemView.findViewById(R.id.deptIcon);
+            deptname = itemView.findViewById(R.id.deptName);
+            this.listnerDeptList = listnerDeptList;
 
             itemView.setOnClickListener(this);
         }
@@ -69,7 +69,8 @@ public class adapterDepts extends RecyclerView.Adapter<adapterDepts.Viewholder>{
             listnerDeptList.onDeptListClick(getAdapterPosition());
         }
     }
-    public interface deptListListner{
+
+    public interface deptListListner {
         void onDeptListClick(int position);
     }
 }
