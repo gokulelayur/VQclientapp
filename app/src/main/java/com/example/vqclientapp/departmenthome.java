@@ -31,7 +31,7 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_departmenthome);
 
-        if(!Python.isStarted()) {
+        if (!Python.isStarted()) {
             Python.start(new AndroidPlatform(this));
         }
 

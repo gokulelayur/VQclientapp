@@ -71,8 +71,7 @@ public class signin extends AppCompatActivity {
             });
 
 
-        }
-        else{
+        } else {
             Intent signinsuccessful = new Intent(signin.this, homePage.class);
             signinsuccessful.putExtra("uname", SaveId.getId(signin.this));
             startActivity(signinsuccessful);

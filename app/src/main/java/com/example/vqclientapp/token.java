@@ -1,8 +1,8 @@
 package com.example.vqclientapp;
 
 public class token {
-    String tokenName,tokenPlace;
-    int tokenNo,tokenAge;
+    String tokenName, tokenPlace;
+    int tokenNo, tokenAge;
 
     public String getTokenName() {
         return tokenName;

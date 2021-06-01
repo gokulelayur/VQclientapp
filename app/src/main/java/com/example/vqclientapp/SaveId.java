@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 public class SaveId {
 
     static final String ID = "ID";
-    static final String depID="depID";
+    static final String depID = "depID";
 
 
     static SharedPreferences getSharedPreferences(Context ctx) {
@@ -24,12 +24,13 @@ public class SaveId {
         return getSharedPreferences(ctx).getString(ID, "defaut");
     }
 
-    public static void setDepID(Context ctx,String value){
+    public static void setDepID(Context ctx, String value) {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.putString(depID,value);
+        editor.putString(depID, value);
         editor.commit();
     }
-    public  static String getDepID(Context ctx){
-        return getSharedPreferences(ctx).getString(depID,"defaut");
+
+    public static String getDepID(Context ctx) {
+        return getSharedPreferences(ctx).getString(depID, "defaut");
     }
 }

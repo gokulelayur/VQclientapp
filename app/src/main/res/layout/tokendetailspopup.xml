@@ -2,128 +2,129 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="350dp"
     android:layout_height="475dp"
-    android:background="@color/cardview_dark_background"
     android:layout_gravity="center"
-    android:padding="5dp"
-    android:orientation="vertical">
+    android:background="@color/cardview_dark_background"
+    android:orientation="vertical"
+    android:padding="5dp">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:orientation="horizontal"
-    android:padding="10dp"
-    android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Token Details"
-        android:textColor="@color/white"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:paddingStart="20dp"
-        android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20dp"
+            android:text="Token Details"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/popupClosebuttImg"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_closebotton1"
-        android:contentDescription="close button"/>
+        <ImageView
+            android:id="@+id/popupClosebuttImg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="close button"
+            android:src="@drawable/ic_closebotton1" />
 
 
-</LinearLayout>
+    </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="50dp"
-        android:paddingStart="30dp">
+        android:paddingStart="30dp"
+        android:paddingTop="50dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Token No : "
-                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                />
+                android:textColor="@color/white" />
+
             <TextView
+                android:id="@+id/popUpTokenNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/popUpTokenNo"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:text="44"
-                android:textColor="@color/white"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name : "
-                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                />
+                android:textColor="@color/white" />
+
             <TextView
+                android:id="@+id/popUpTokenName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/popUpTokenName"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:text="Gokul S Nath"
-                android:textColor="@color/white"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Age : "
-                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                />
+                android:textColor="@color/white" />
+
             <TextView
+                android:id="@+id/popUpTokenAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/popUpTokenAge"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:text="44"
-                android:textColor="@color/white"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Place : "
-                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                />
+                android:textColor="@color/white" />
+
             <TextView
+                android:id="@+id/popUpTokenPlace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/popUpTokenPlace"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:text="Elayur"
-                android:textColor="@color/white"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

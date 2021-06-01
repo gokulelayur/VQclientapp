@@ -10,7 +10,7 @@
         android:id="@+id/sigininlogo"
         android:layout_width="75dp"
         android:layout_height="75dp"
-       android:layout_centerHorizontal="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:src="@drawable/img" />
 
@@ -18,8 +18,8 @@
         android:layout_width="270dp"
         android:layout_height="370dp"
         android:layout_below="@+id/sigininlogo"
-        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rectangle"
         android:gravity="center"
         android:orientation="vertical">

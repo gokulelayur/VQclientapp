@@ -7,148 +7,141 @@
     tools:context=".addDepartment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/dname_layout"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Department Name : "
-            />
+            android:text="Department Name : " />
+
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/deptName"
-            android:inputType="text"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/maxtokens_layout"
-        android:layout_below="@+id/dname_layout"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dname_layout">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Maximum Tokens : "
-            />
+            android:text="Maximum Tokens : " />
+
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/maxTokens"
-            android:inputType="number"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/deptDescription_layout"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/maxtokens_layout"
-        >
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description : "
-            />
+            android:text="Description : " />
+
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/deptDescription"
-            android:inputType="text"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/starttime_layout"
-        android:layout_below="@id/deptDescription_layout"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/deptDescription_layout">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Time : "
-            />
+            android:text="Start Time : " />
+
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/startTime"
-            android:inputType="time"
-            />
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="time" />
 
 
     </LinearLayout>
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/endtime_layout"
-        android:layout_below="@id/starttime_layout"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/starttime_layout">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="End Time : "
-            />
+            android:text="End Time : " />
+
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/endtime"
-            android:inputType="time|datetime"
-            />
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="time|datetime" />
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/avgtime_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/avgtime_layout"
-        android:layout_below="@id/endtime_layout"
-        >
+        android:layout_below="@id/endtime_layout">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Avg Time (Mins): "
-            />
+            android:text="Avg Time (Mins): " />
+
         <EditText
+            android:id="@+id/avgtime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/avgtime"
-            android:inputType="number"
-            />
-
+            android:inputType="number" />
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button_layout"
         android:layout_below="@id/avgtime_layout"
         android:layout_marginTop="100px"
-        android:gravity="center"
-        >
+        android:gravity="center">
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/addMoreDeptButt"
-            android:text="Add more"
-            android:textStyle="bold"
-            android:layout_marginRight="10dp"
-            />
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Done"
-            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:text="Add more"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/doneDeptDetailsbutt"
-            android:layout_marginStart="10dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Done"
+            android:textStyle="bold" />
     </LinearLayout>
 </RelativeLayout>

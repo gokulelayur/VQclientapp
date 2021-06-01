@@ -24,18 +24,17 @@ public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenl
     }
 
 
-
     @NonNull
     @NotNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_tokenlist_recycler,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item_tokenlist_recycler, parent, false);
         return new Viewholder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull Viewholder holder, int position) {
-        token token=tokenlist.get(position);
+        token token = tokenlist.get(position);
         holder.tokenName.setText(token.getTokenName());
         holder.tokenNo.setText(String.valueOf(token.getTokenNo()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -46,15 +45,15 @@ public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenl
 
                 Dialog tokendetailsdialog;
 
-                tokendetailsdialog=new Dialog(v.getContext());
+                tokendetailsdialog = new Dialog(v.getContext());
                 ImageView closeimg;
-                TextView tokenNo,tokenName,tokenPlace,tokenAge;
+                TextView tokenNo, tokenName, tokenPlace, tokenAge;
                 tokendetailsdialog.setContentView(R.layout.tokendetailspopup);
-                closeimg=tokendetailsdialog.findViewById(R.id.popupClosebuttImg);
-                tokenNo= tokendetailsdialog.findViewById(R.id.popUpTokenNo);
-                tokenName=tokendetailsdialog.findViewById(R.id.popUpTokenName);
-                tokenAge=tokendetailsdialog.findViewById(R.id.popUpTokenAge);
-                tokenPlace=tokendetailsdialog.findViewById(R.id.popUpTokenPlace);
+                closeimg = tokendetailsdialog.findViewById(R.id.popupClosebuttImg);
+                tokenNo = tokendetailsdialog.findViewById(R.id.popUpTokenNo);
+                tokenName = tokendetailsdialog.findViewById(R.id.popUpTokenName);
+                tokenAge = tokendetailsdialog.findViewById(R.id.popUpTokenAge);
+                tokenPlace = tokendetailsdialog.findViewById(R.id.popUpTokenPlace);
                 tokenNo.setText(String.valueOf(token.getTokenNo()));
                 tokenName.setText(token.getTokenName());
                 tokenAge.setText(String.valueOf(token.getTokenAge()));
@@ -78,15 +77,15 @@ public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenl
         return tokenlist.size();
     }
 
-    class Viewholder extends RecyclerView.ViewHolder{
+    class Viewholder extends RecyclerView.ViewHolder {
 
-        TextView tokenName,tokenNo;
+        TextView tokenName, tokenNo;
 
 
         public Viewholder(@NonNull @NotNull View itemView) {
             super(itemView);
-            tokenName=itemView.findViewById(R.id.tokenlisttokenName);
-            tokenNo=itemView.findViewById(R.id.tokenlisttokenNo);
+            tokenName = itemView.findViewById(R.id.tokenlisttokenName);
+            tokenNo = itemView.findViewById(R.id.tokenlisttokenNo);
         }
     }
 }

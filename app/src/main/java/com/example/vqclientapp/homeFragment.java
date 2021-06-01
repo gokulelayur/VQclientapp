@@ -96,6 +96,7 @@ public class homeFragment extends Fragment {
 
                         @Override
                         public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                            Toast.makeText(getContext(), "Error Occured", Toast.LENGTH_SHORT).show();
 
                         }
                     });

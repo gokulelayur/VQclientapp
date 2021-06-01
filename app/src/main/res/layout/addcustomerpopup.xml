@@ -2,123 +2,125 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="350dp"
     android:layout_height="475dp"
-    android:background="@color/cardview_dark_background"
     android:layout_gravity="center"
-    android:padding="5dp"
-    android:orientation="vertical">
+    android:background="@color/cardview_dark_background"
+    android:orientation="vertical"
+    android:padding="5dp">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:orientation="horizontal"
-    android:padding="10dp"
-    android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Customer"
-        android:textColor="@color/white"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:paddingStart="20dp"
-        android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="20dp"
+            android:text="Add Customer"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/popupClosebuttImg"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_closebotton1"
-        android:contentDescription="close button"/>
+        <ImageView
+            android:id="@+id/popupClosebuttImg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="close button"
+            android:src="@drawable/ic_closebotton1" />
 
 
-</LinearLayout>
+    </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="50dp"
-        android:paddingStart="30dp">
+        android:paddingStart="30dp"
+        android:paddingTop="50dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name : "
-                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                />
+                android:textColor="@color/white" />
+
             <EditText
+                android:id="@+id/newCustName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/newCustName"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:hint="Name"
                 android:inputType="text"
-                android:textColor="@color/white"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Place : "
-                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                />
+                android:textColor="@color/white" />
+
             <EditText
+                android:id="@+id/newCustPlace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/newCustPlace"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:hint="Place"
                 android:inputType="text"
-                android:textColor="@color/white"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Age : "
-                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                />
+                android:textColor="@color/white" />
+
             <EditText
+                android:id="@+id/newCustAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/newCustAge"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:hint="Age"
                 android:inputType="number"
-                android:textColor="@color/white"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="40dp"
+            android:gravity="center">
+
             <Button
+                android:id="@+id/popUpAddNewCust"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Customer"
-                android:id="@+id/popUpAddNewCust"/>
+                android:text="Add Customer" />
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

@@ -2,7 +2,7 @@ package com.example.vqclientapp;
 
 public class signuphelper {
 
-String uname,cat,company,desc,mapLink,mobNo;
+    String uname, cat, company, desc, mapLink, mobNo;
 
     public signuphelper() {
     }

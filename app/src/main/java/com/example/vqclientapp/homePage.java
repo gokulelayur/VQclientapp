@@ -46,7 +46,7 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
             }
         }
         SaveId.setId(this, uname);
-        SaveId.setDepID(homePage.this,"defaut");
+        SaveId.setDepID(homePage.this, "defaut");
 
         recyclerView = findViewById(R.id.deptRecycler);
 
@@ -89,12 +89,12 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
                 startActivity(gotoadddept);
             }
         });
-        Button companyLogout=findViewById(R.id.companyLogout);
+        Button companyLogout = findViewById(R.id.companyLogout);
         companyLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SaveId.setId(homePage.this,"defaut");
-                Intent goBackToSignin=new Intent(homePage.this,signin.class);
+                SaveId.setId(homePage.this, "defaut");
+                Intent goBackToSignin = new Intent(homePage.this, signin.class);
                 startActivity(goBackToSignin);
             }
         });

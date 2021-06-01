@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class firstDetails extends AppCompatActivity {
-    String company, cat,desc,mapLink;
+    String company, cat, desc, mapLink;
 
 
     @Override
@@ -28,17 +28,16 @@ public class firstDetails extends AppCompatActivity {
         firstNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                company=cname.getText().toString();
-                cat=category.getText().toString();
-                desc=description.getText().toString();
-                mapLink=map.getText().toString();
+                company = cname.getText().toString();
+                cat = category.getText().toString();
+                desc = description.getText().toString();
+                mapLink = map.getText().toString();
 //                Toast.makeText(firstDetails.this, "abc" +noDept, Toast.LENGTH_SHORT).show();
-                if(company == null || cat == null || desc == null || mapLink == null) {
+                if (company == null || cat == null || desc == null || mapLink == null) {
 
                     Toast.makeText(firstDetails.this, "Fill all details", Toast.LENGTH_SHORT).show();
 
-                }
-                else{
+                } else {
                     Intent firstDetailsToSecondDetails = new Intent(firstDetails.this, secondDetails.class);
                     firstDetailsToSecondDetails.putExtra("extraCompanyName", company);
                     firstDetailsToSecondDetails.putExtra("extraDescript", desc);

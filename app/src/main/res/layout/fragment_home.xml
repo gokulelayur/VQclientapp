@@ -8,8 +8,6 @@
     android:orientation="vertical">
 
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,47 +19,50 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:layout_weight="2"
-            android:text="NEXT TOKEN"
-            android:layout_marginHorizontal="10dp"/>
+            android:text="NEXT TOKEN" />
+
         <TextView
             android:id="@+id/display_current_token"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="No."
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="25sp"
+            android:layout_weight="1"
             android:background="@drawable/token_circle"
-            android:layout_weight="1"/>
-<!--        <RelativeLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginTop="38dp"-->
-<!--            android:background="@drawable/token_circle"-->
-<!--            android:layout_weight="1"-->
-<!--            >-->
+            android:gravity="center"
+            android:text="No."
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+        <!--        <RelativeLayout-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:layout_marginTop="38dp"-->
+        <!--            android:background="@drawable/token_circle"-->
+        <!--            android:layout_weight="1"-->
+        <!--            >-->
 
-<!--            -->
+        <!--            -->
 
-<!--        </RelativeLayout>-->
+        <!--        </RelativeLayout>-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:layout_marginHorizontal="10dp"
+            android:layout_weight="2"
             android:text="PASS" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <Button
+            android:id="@+id/addCustomer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Customer"
-            android:id="@+id/addCustomer"/>
+            android:text="Add Customer" />
     </LinearLayout>
 
     <LinearLayout

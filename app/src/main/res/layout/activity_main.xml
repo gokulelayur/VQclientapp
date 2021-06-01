@@ -11,9 +11,10 @@
         android:id="@+id/logo_id"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:contentDescription="@string/app_name"
         android:layout_centerInParent="true"
-        android:src="@drawable/img"/>
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/img" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:paddingTop="45dp"
         android:text="Virtual Queue"
-        android:textSize="45dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="45dp" />
 
 </RelativeLayout>

@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
-    private static int timeup=1000;
+    private static int timeup = 1000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,10 +17,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent itt=new Intent(MainActivity.this,signin.class);
+                Intent itt = new Intent(MainActivity.this, signin.class);
                 startActivity(itt);
                 finish();
             }
-        },timeup);
+        }, timeup);
     }
 }
