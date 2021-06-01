@@ -1,11 +1,16 @@
 package com.example.vqclientapp;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,7 +18,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
 import com.example.vqclientapp.R;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,13 +32,15 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class homeFragment extends Fragment {
 
     RecyclerView recyclerView;
     adapterQueueRecycler adapterQueueRecycler;
 
-    token currentToken=new token();
+    token currentToken = new token();
     ArrayList<Integer> queue = new ArrayList<>();
     ArrayList<token> tokenArrayList = new ArrayList<>();
 
@@ -44,7 +54,7 @@ public class homeFragment extends Fragment {
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        TextView currentTokenDisp=view.findViewById(R.id.display_current_token);
+        TextView currentTokenDisp = view.findViewById(R.id.display_current_token);
         recyclerView = view.findViewById(R.id.queueRecycler);
         adapterQueueRecycler = new adapterQueueRecycler(tokenArrayList);
         recyclerView.setHasFixedSize(true);
@@ -75,8 +85,12 @@ public class homeFragment extends Fragment {
                                 token newtoken = shot.getValue(token.class);
                                 tokenArrayList.add(newtoken);
                             }
-                            currentToken=tokenArrayList.get(0);
+
+                            //Current Token
+                            currentToken = tokenArrayList.get(0);
                             currentTokenDisp.setText(String.valueOf(currentToken.getTokenNo()));
+
+
                             adapterQueueRecycler.notifyDataSetChanged();
                         }
 
@@ -90,6 +104,104 @@ public class homeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+        Button addCust = view.findViewById(R.id.addCustomer);
+        addCust.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog addCustDialog;
+                addCustDialog = new Dialog(view.getContext());
+
+                ImageView closeimg;
+                EditText newCustName, newCustPlace, newCustAge;
+                Button addNewCustomerButt;
+
+                addCustDialog.setContentView(R.layout.addcustomerpopup);
+                closeimg = addCustDialog.findViewById(R.id.popupClosebuttImg);
+                newCustName = addCustDialog.findViewById(R.id.newCustName);
+                newCustPlace = addCustDialog.findViewById(R.id.newCustPlace);
+                newCustAge = addCustDialog.findViewById(R.id.newCustAge);
+                addNewCustomerButt = addCustDialog.findViewById(R.id.popUpAddNewCust);
+
+                addNewCustomerButt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = newCustName.getText().toString();
+                        String place = newCustPlace.getText().toString();
+                        int age = Integer.parseInt(newCustAge.getText().toString());
+
+                        token newCustToken = new token();
+                        newCustToken.setTokenName(name);
+                        newCustToken.setTokenAge(age);
+                        newCustToken.setTokenPlace(place);
+                        boolean flag = false;
+                        thisDeptRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                int maxT = Integer.parseInt(snapshot.child("maxtokens").getValue().toString());
+                                int nextAvail = Integer.parseInt(snapshot.child("nextavailabletoken").getValue().toString());
+                                if (nextAvail <= maxT) {
+                                    thisDeptRef.child("nextavailabletoken").setValue(nextAvail + 1);
+                                    newCustToken.setTokenNo(nextAvail);
+                                    ref.child(newCustToken.tokenNo + "++" + SaveId.getDepID(getContext()) + "+DATE").setValue(newCustToken);
+
+
+                                    //----------BUFFER ALGORITHM------------------------------------------------------------------------
+
+                                    Python py = Python.getInstance();
+                                    PyObject pyObject = py.getModule("buggerAlgorithm");
+                                    String buf = pyObject.callAttr("bufferAlgo", newCustToken.tokenNo, 3, queue.toString()).toString();
+                                    // the argument=> 3 here is the no. of person after which late comer enters
+
+                                    String[] strBuffer = buf.substring(1, buf.length() - 1).split(",");
+                                    ArrayList<Integer> newBuffer = new ArrayList<>();
+                                    for (String i : strBuffer) {
+
+                                        newBuffer.add(Integer.parseInt(i.replaceAll(" ", "")));
+                                    }
+
+                                    //-----------END OF BUFFER ALGORITHM----------------------------------------------------------------
+
+
+                                    int i = 0;
+
+                                    for (int k : newBuffer) {
+                                        i += 1;
+                                        reference.child(String.valueOf(i)).setValue(k);
+
+                                    }
+
+                                    Toast.makeText(getContext(), "Customer added Successfully", Toast.LENGTH_SHORT).show();
+
+                                } else {
+                                    Toast.makeText(getContext(), "Max Token reached", Toast.LENGTH_SHORT).show();
+                                    thisDeptRef.child("activenow").setValue(false);
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                                Toast.makeText(getContext(), "Unexpected Error Occured", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                        addCustDialog.dismiss();
+
+                    }
+                });
+
+                closeimg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addCustDialog.dismiss();
+                    }
+                });
+
+                addCustDialog.show();
 
             }
         });

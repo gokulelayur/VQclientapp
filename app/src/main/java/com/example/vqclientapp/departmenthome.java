@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
 import com.google.android.material.navigation.NavigationView;
 
 import org.jetbrains.annotations.NotNull;
@@ -28,6 +30,10 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_departmenthome);
+
+        if(!Python.isStarted()) {
+            Python.start(new AndroidPlatform(this));
+        }
 
         Bundle extras;
         if (savedInstanceState == null) {

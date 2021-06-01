@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "837291930837",
+    "project_id": "vq-client",
+    "storage_bucket": "vq-client.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837291930837:android:5909b12eae6b3444141e5c",
+        "android_client_info": {
+          "package_name": "com.example.vqclientapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "837291930837-eflf8c1h7g9v656isdr2bm28cro5rgcc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjRU2-jRWFgZlB_lJch75gfPUonfE83ec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837291930837-eflf8c1h7g9v656isdr2bm28cro5rgcc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
