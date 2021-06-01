@@ -33,7 +33,6 @@ public class adapterQueueRecycler extends RecyclerView.Adapter<adapterQueueRecyc
     @Override
     public void onBindViewHolder(@NonNull @NotNull Viewholder holder, int position) {
         token thisToken = tokenArrayList.get(position);
-        Log.d("each row", "tokendetails: " + thisToken);
         holder.tokenNo.setText(String.valueOf(thisToken.getTokenNo()));
         holder.tokenName.setText(thisToken.getTokenName());
     }

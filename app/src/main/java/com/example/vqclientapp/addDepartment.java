@@ -88,13 +88,12 @@ public class addDepartment extends AppCompatActivity {
                 avgt = Integer.parseInt(avgtime.getText().toString());
                 if (isvalid(name, descript, maxtokens, st, et, avgt)) {
                     department help = new department(name, descript, maxtokens, st, et, avgt);
-                    Toast.makeText(addDepartment.this, "currenttok: ", Toast.LENGTH_SHORT).show();
                     rootNode = FirebaseDatabase.getInstance();
                     ref = rootNode.getReference("main").child("unverified").child(uname);
                     ref.child(name).setValue(help).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Toast.makeText(addDepartment.this, "Department added successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(addDepartment.this, "Department will be shown after Verification", Toast.LENGTH_SHORT).show();
                         }
                     });
 

@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import com.example.vqclientapp.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,8 +34,11 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class homeFragment extends Fragment {
 
@@ -68,46 +73,152 @@ public class homeFragment extends Fragment {
         ref = thisDeptRef.child("TOKEN");
 
 
+        //----------QUEUE RECYCLER UPDATER------------------------------------------------------------------------
+
+
         reference.orderByKey().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    int Value = Integer.valueOf(dataSnapshot.getValue().toString());
-                    queue.add(Value);
+                queue.clear();
+                tokenArrayList.clear();
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        int Value = Integer.valueOf(dataSnapshot.getValue().toString());
+                        queue.add(Value);
 
-                }
-                for (int i = 0; i < queue.size(); i++) {
-                    Query query = ref.orderByChild("tokenNo").equalTo(queue.get(i));
-                    query.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull @NotNull DataSnapshot snap) {
-                            for (DataSnapshot shot : snap.getChildren()) {
-                                token newtoken = shot.getValue(token.class);
-                                tokenArrayList.add(newtoken);
+                    }
+
+                    for (int i = 0; i < queue.size(); i++) {
+                        Query query = ref.orderByChild("tokenNo").equalTo(queue.get(i));
+                        query.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull @NotNull DataSnapshot snap) {
+                                for (DataSnapshot shot : snap.getChildren()) {
+                                    token newtoken = shot.getValue(token.class);
+                                    tokenArrayList.add(newtoken);
+
+                                }
+
+                                //Current Token
+                                currentToken = tokenArrayList.get(0);
+                                currentTokenDisp.setText(String.valueOf(currentToken.getTokenNo()));
+
+
+                                adapterQueueRecycler.notifyDataSetChanged();
                             }
 
-                            //Current Token
-                            currentToken = tokenArrayList.get(0);
-                            currentTokenDisp.setText(String.valueOf(currentToken.getTokenNo()));
+                            @Override
+                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                                Toast.makeText(getContext(), "Error Occured", Toast.LENGTH_SHORT).show();
 
-
-                            adapterQueueRecycler.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                            Toast.makeText(getContext(), "Error Occured", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                Toast.makeText(getContext(), "Data Fetch Error from Main Listner", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //----------NEXT TOKEN BUTTON CLICK------------------------------------------------------------------------
+
+
+        Button nextTokenButt = view.findViewById(R.id.nextTokenButt);
+
+        nextTokenButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (queue.size() >= 1) {
+
+                    Query query = ref.orderByChild("tokenNo").equalTo(queue.get(0));
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                            String key = snapshot.getKey();
+                            FirebaseDatabase.getInstance().getReference("main/pastTokens").setValue(snapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                    Toast.makeText(getContext(), "Done Copiying", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                        }
+                    });
+
+                    if (queue.size() == 1) {
+                        reference.removeValue();
+                        queue.clear();
+                        tokenArrayList.clear();
+                        adapterQueueRecycler.notifyDataSetChanged();
+                        currentTokenDisp.setText("NA");
+
+                    } else {
+                        queue.remove(0);
+                        int i = 0;
+                        Map<String, Object> map = new HashMap<>();
+                        for (int k : queue) {
+                            i += 1;
+                            map.put(String.valueOf(i), k);
+
+                        }
+                        reference.removeValue();
+                        reference.updateChildren(map);
+                    }
+
+                }
+            }
+        });
+
+        //----------PASS TOKEN BUTTON CLICK------------------------------------------------------------------------
+
+
+        Button passTokenButt = view.findViewById(R.id.passTokenButt);
+        passTokenButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int val = queue.get(0);
+                queue.remove(0);
+
+
+                //----------BUFFER ALGORITHM------------------------------------------------------------------------
+
+                Python py = Python.getInstance();
+                PyObject pyObject = py.getModule("buggerAlgorithm");
+                String buf = pyObject.callAttr("bufferAlgo", val, 3, queue.toString()).toString();
+                // the argument=> 3 here is the no. of person after which late comer enters
+
+                String[] strBuffer = buf.substring(1, buf.length() - 1).split(",");
+                ArrayList<Integer> newBuffer = new ArrayList<>();
+                for (String i : strBuffer) {
+
+                    newBuffer.add(Integer.parseInt(i.replaceAll(" ", "")));
+                }
+
+                //-----------END OF BUFFER ALGORITHM----------------------------------------------------------------
+                int i = 0;
+                Map<String, Object> buffMap = new HashMap<>();
+                for (int k : newBuffer) {
+                    i += 1;
+                    buffMap.put(String.valueOf(i), k);
+                }
+                reference.removeValue();
+                reference.updateChildren(buffMap);
+                Toast.makeText(getContext(), "Customer Rearranged Successfully", Toast.LENGTH_SHORT).show();
 
             }
         });
+
+
+        //----------ADD OFFLINE CUSTOMER------------------------------------------------------------------------
+
 
         Button addCust = view.findViewById(R.id.addCustomer);
         addCust.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +255,12 @@ public class homeFragment extends Fragment {
                             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                                 int maxT = Integer.parseInt(snapshot.child("maxtokens").getValue().toString());
                                 int nextAvail = Integer.parseInt(snapshot.child("nextavailabletoken").getValue().toString());
+
                                 if (nextAvail <= maxT) {
+                                    if (nextAvail == maxT) {
+                                        thisDeptRef.child("activenow").setValue(false);
+                                    }
+
                                     thisDeptRef.child("nextavailabletoken").setValue(nextAvail + 1);
                                     newCustToken.setTokenNo(nextAvail);
                                     ref.child(newCustToken.tokenNo + "++" + SaveId.getDepID(getContext()) + "+DATE").setValue(newCustToken);
@@ -168,12 +284,14 @@ public class homeFragment extends Fragment {
 
 
                                     int i = 0;
-
+                                    Map<String, Object> buffMap = new HashMap<>();
                                     for (int k : newBuffer) {
                                         i += 1;
-                                        reference.child(String.valueOf(i)).setValue(k);
-
+                                        buffMap.put(String.valueOf(i), k);
                                     }
+                                    reference.removeValue();
+                                    reference.updateChildren(buffMap);
+
 
                                     Toast.makeText(getContext(), "Customer added Successfully", Toast.LENGTH_SHORT).show();
 

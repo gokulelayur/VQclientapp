@@ -17,6 +17,7 @@
 
 
         <Button
+            android:id="@+id/nextTokenButt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -34,18 +35,9 @@
             android:text="No."
             android:textColor="@color/black"
             android:textSize="25sp" />
-        <!--        <RelativeLayout-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="50dp"-->
-        <!--            android:layout_marginTop="38dp"-->
-        <!--            android:background="@drawable/token_circle"-->
-        <!--            android:layout_weight="1"-->
-        <!--            >-->
 
-        <!--            -->
-
-        <!--        </RelativeLayout>-->
         <Button
+            android:id="@+id/passTokenButt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
