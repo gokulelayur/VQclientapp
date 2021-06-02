@@ -11,5 +11,9 @@
         android:id="@+id/nav_tokenlist"
         android:icon="@drawable/ic_tokenlist"
         android:title="Token List" />
+        <item
+            android:id="@+id/nav_qrgenerator"
+            android:icon="@drawable/ic_qrcode"
+            android:title="Generate QR Code"/>
 </group>
 </menu>

@@ -84,6 +84,9 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new tokenlistFragment()).commit();
                 break;
+            case R.id.nav_qrgenerator:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new QRFragment()).commit();
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
