@@ -44,7 +44,7 @@ public class addDepartment extends AppCompatActivity {
         EditText password = findViewById(R.id.deptPassword);
         EditText ConfirmPass = findViewById(R.id.deptConfirmPassword);
         Button donebutt = findViewById(R.id.doneDeptDetailsbutt);
-        Button addmorebutt = findViewById(R.id.addMoreDeptButt);
+//        Button addmorebutt = findViewById(R.id.addMoreDeptButt);
 
         uname = SaveId.getId(addDepartment.this);
 
@@ -145,100 +145,100 @@ public class addDepartment extends AppCompatActivity {
 
 
 
+// <<<---------------------ADD MORE BUTTON SEEMS LIKE A BAD IDEA---------------------------------------------------------->>>>>
 
-
-        addmorebutt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                deptID = dname.getText().toString();   // its actually id
-                ogname = ogDeptName.getText().toString();  //its the real department name
-                descript = desc.getText().toString();
-                maxtokens = Integer.parseInt(maxtok.getText().toString());
-                st = stime.getText().toString();
-                et = etime.getText().toString();
-                avgt = Integer.parseInt(avgtime.getText().toString());
-
-                pword = password.getText().toString();
-                confPword = ConfirmPass.getText().toString();
-
-
-
-
-
-
-
-                if (isvalid(deptID, descript, maxtokens, st, et, avgt, pword, confPword)) {
-
-                    if (pword.equals(confPword)) {
-                        if (pword.length() >= 8) {
-                            if (!deptID.contains(" ")) {
-
-
-                                FirebaseDatabase.getInstance().getReference("main").child("company").child(uname).child("department")
-                                        .orderByKey().equalTo(deptID).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                                        if(snapshot.exists()){
-
-                                            //ID ALREADY EXIST
-                                            Toast.makeText(addDepartment.this, "Dept ID Already Exist", Toast.LENGTH_SHORT).show();
-                                        }
-                                        else {
-                                            // NEW ID ADD DEPT
-
-                                            department help = new department(deptID, ogname, descript, maxtokens, st, et, avgt);
-
-                                            String deptUserName=deptID+"@"+SaveId.getId(addDepartment.this);
-                                            deptCredentials credentials=new deptCredentials(deptUserName,pword,deptID,SaveId.getId(addDepartment.this));
-
-                                            rootNode = FirebaseDatabase.getInstance();
-                                            ref = rootNode.getReference("main").child("unverified").child(uname);
-                                            ref.child(deptID).setValue(help).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
-
-                                                    ref.child(deptID).child("Credentials").setValue(credentials).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                        @Override
-                                                        public void onSuccess(Void unused) {
-                                                            Toast.makeText(addDepartment.this, "Department details send for Verification", Toast.LENGTH_SHORT).show();
-
-                                                        }
-                                                    });
-                                                }
-                                            });
-
-
-                                            Intent it = new Intent(addDepartment.this, homePage.class);
-                                            startActivity(it);
-                                            finish();
-
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-                                    }
-                                });
-
-                            }
-                            else {
-                                Toast.makeText(addDepartment.this, "ID shouldn't contain spaces ", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        else {
-                            Toast.makeText(addDepartment.this, "Password is too Short", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    else {
-                        Toast.makeText(addDepartment.this, "Password Mismatch", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(addDepartment.this, "Enter all the details", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        addmorebutt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                deptID = dname.getText().toString();   // its actually id
+//                ogname = ogDeptName.getText().toString();  //its the real department name
+//                descript = desc.getText().toString();
+//                maxtokens = Integer.parseInt(maxtok.getText().toString());
+//                st = stime.getText().toString();
+//                et = etime.getText().toString();
+//                avgt = Integer.parseInt(avgtime.getText().toString());
+//
+//                pword = password.getText().toString();
+//                confPword = ConfirmPass.getText().toString();
+//
+//
+//
+//
+//
+//
+//
+//                if (isvalid(deptID, descript, maxtokens, st, et, avgt, pword, confPword)) {
+//
+//                    if (pword.equals(confPword)) {
+//                        if (pword.length() >= 8) {
+//                            if (!deptID.contains(" ")) {
+//
+//
+//                                FirebaseDatabase.getInstance().getReference("main").child("company").child(uname).child("department")
+//                                        .orderByKey().equalTo(deptID).addListenerForSingleValueEvent(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+//                                        if(snapshot.exists()){
+//
+//                                            //ID ALREADY EXIST
+//                                            Toast.makeText(addDepartment.this, "Dept ID Already Exist", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                        else {
+//                                            // NEW ID ADD DEPT
+//
+//                                            department help = new department(deptID, ogname, descript, maxtokens, st, et, avgt);
+//
+//                                            String deptUserName=deptID+"@"+SaveId.getId(addDepartment.this);
+//                                            deptCredentials credentials=new deptCredentials(deptUserName,pword,deptID,SaveId.getId(addDepartment.this));
+//
+//                                            rootNode = FirebaseDatabase.getInstance();
+//                                            ref = rootNode.getReference("main").child("unverified").child(uname);
+//                                            ref.child(deptID).setValue(help).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                                @Override
+//                                                public void onSuccess(Void unused) {
+//
+//                                                    ref.child(deptID).child("Credentials").setValue(credentials).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                                        @Override
+//                                                        public void onSuccess(Void unused) {
+//                                                            Toast.makeText(addDepartment.this, "Department details send for Verification", Toast.LENGTH_SHORT).show();
+//
+//                                                        }
+//                                                    });
+//                                                }
+//                                            });
+//
+//
+//                                            Intent it = new Intent(addDepartment.this, homePage.class);
+//                                            startActivity(it);
+//                                            finish();
+//
+//                                        }
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+//
+//                                    }
+//                                });
+//
+//                            }
+//                            else {
+//                                Toast.makeText(addDepartment.this, "ID shouldn't contain spaces ", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                        else {
+//                            Toast.makeText(addDepartment.this, "Password is too Short", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                    else {
+//                        Toast.makeText(addDepartment.this, "Password Mismatch", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(addDepartment.this, "Enter all the details", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
 
     private boolean isvalid(String name, String descript, int maxtokens, String st, String et, int avgt, String pword, String confPword) {

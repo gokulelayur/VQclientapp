@@ -185,13 +185,13 @@
         android:layout_marginTop="100px"
         android:gravity="center">
 
-        <Button
-            android:id="@+id/addMoreDeptButt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="Add more"
-            android:textStyle="bold" />
+<!--        <Button-->
+<!--            android:id="@+id/addMoreDeptButt"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:text="Add more"-->
+<!--            android:textStyle="bold" />-->
 
         <Button
             android:id="@+id/doneDeptDetailsbutt"
