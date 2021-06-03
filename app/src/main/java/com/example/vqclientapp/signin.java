@@ -16,11 +16,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class signin extends AppCompatActivity {
 
     private TextView signup;
-    String eid, passwd, uname;
+    String username, passwd;
     private FirebaseAuth auth;
 
 
@@ -31,7 +39,9 @@ public class signin extends AppCompatActivity {
 
         if (SaveId.getId(signin.this).equals("defaut")) {
 
-            EditText email = findViewById(R.id.signinemailid);
+            //MANUAL LOGIN
+
+            EditText UserNameView = findViewById(R.id.signinemailid);
             EditText pswd = findViewById(R.id.signinPassword);
             Button butt = findViewById(R.id.signinButton);
 
@@ -40,24 +50,68 @@ public class signin extends AppCompatActivity {
             butt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    eid = email.getText().toString();
+                    username = UserNameView.getText().toString();
                     passwd = pswd.getText().toString();
-                    auth.signInWithEmailAndPassword(eid, passwd).addOnCompleteListener(signin.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                uname = eid.replace("@", "0");
-                                uname = uname.replace(".", "1");
-                                Intent signinsuccessful = new Intent(signin.this, homePage.class);
-                                signinsuccessful.putExtra("uname", uname);
-                                startActivity(signinsuccessful);
-                                Toast.makeText(signin.this, "Success", Toast.LENGTH_SHORT).show();
-                                finish();
-                            } else {
-                                Toast.makeText(signin.this, "Sign in Failed", Toast.LENGTH_SHORT).show();
+
+
+                    int count=0;
+                    for (char c: username.toCharArray()) {
+                        if(c=='@')
+                            count+=1;
+                    }
+
+
+                    if(count>1){
+                        //DEPT LOGIN
+                        String deptuname=username.replace(".","-");
+                        FirebaseDatabase.getInstance().getReference("main").child("DepartmentCredentials").child(deptuname).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                if(snapshot.exists()){
+                                    if(snapshot.child("password").getValue().toString().equals(passwd)){
+                                        String uname;
+                                        uname = snapshot.child("companyID").getValue().toString();
+                                        String deptID;
+                                        deptID = Objects.requireNonNull(snapshot.child("deptID").getValue()).toString();
+                                        Intent deptSigninSuccessfull = new Intent(signin.this, departmenthome.class);
+                                        SaveId.setId(signin.this,uname);
+                                        SaveId.setDepID(signin.this,deptID);
+                                        SaveId.setIsAdmin(signin.this,false);
+                                        startActivity(deptSigninSuccessfull);
+                                        Toast.makeText(signin.this, "Dept Signed in Successfully", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
+                                    else{
+                                        Toast.makeText(signin.this, "Sign in Failed", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
                             }
-                        }
-                    });
+
+                            @Override
+                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+                    else {
+                        // COMPANY LOGIN
+                        auth.signInWithEmailAndPassword(username, passwd).addOnCompleteListener(signin.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    String id=username.replace(".", "-");
+                                    Intent companySigninSuccessful = new Intent(signin.this, homePage.class);
+                                    SaveId.setId(signin.this, id);
+                                    SaveId.setIsAdmin(signin.this,true);
+                                    startActivity(companySigninSuccessful);
+                                    Toast.makeText(signin.this, "Company Signed in Successfully", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(signin.this, "Sign in Failed", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
                 }
             });
 
@@ -66,25 +120,36 @@ public class signin extends AppCompatActivity {
             signup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    opensignuppage();
+                    Intent signup = new Intent(signin.this, firstDetails.class);
+                    startActivity(signup);
                 }
             });
 
 
-        } else {
-            Intent signinsuccessful = new Intent(signin.this, homePage.class);
-            signinsuccessful.putExtra("uname", SaveId.getId(signin.this));
-            startActivity(signinsuccessful);
-            Toast.makeText(signin.this, "Success", Toast.LENGTH_SHORT).show();
-            finish();
+        }
+        else {
 
+            // AUTO LOGIN
+            if(SaveId.getIsAdmin(signin.this)==true) {
+
+                // COMPANY ADMIN AUTO LOGIN
+                Intent companySigninSuccessful = new Intent(signin.this, homePage.class);
+                startActivity(companySigninSuccessful);
+                Toast.makeText(signin.this, "Company Signed in Successfully", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            else {
+
+                // DEPARTMENT AUTO LOGIN
+
+
+                Intent deptSigninSuccessful = new Intent(signin.this, departmenthome.class);
+                startActivity(deptSigninSuccessful);
+                Toast.makeText(signin.this, "Dept Signed in Successfully", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         }
 
-    }
-
-    public void opensignuppage() {
-        Intent itt = new Intent(this, firstDetails.class);
-        startActivity(itt);
     }
 }
 

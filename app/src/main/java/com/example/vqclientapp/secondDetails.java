@@ -66,7 +66,7 @@ public class secondDetails extends AppCompatActivity {
                 mobNo = mobNumber.getText().toString();
                 check = cbox.isChecked();
 //                Toast.makeText(secondDetails.this, "hihihi", Toast.LENGTH_SHORT).show();
-                uname = emailToUname(eid);
+                uname = eid.replace(".","-");
 
                 if (isValid(eid, psswd1, psswd2, mobNo)) {
 
@@ -81,7 +81,8 @@ public class secondDetails extends AppCompatActivity {
                             if (task.isSuccessful()) {
 
                                 Intent signupSuccessful = new Intent(secondDetails.this, homePage.class);
-                                signupSuccessful.putExtra("uname", uname);
+//                                signupSuccessful.putExtra("uname", uname);
+                                SaveId.setId(secondDetails.this,uname);
                                 startActivity(signupSuccessful);
                                 finish();
                             } else {
@@ -93,14 +94,6 @@ public class secondDetails extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private String emailToUname(String eid) {
-        String temp;
-        temp = eid.replace("@", "0");
-        temp = temp.replace(".", "1");
-//        Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
-        return temp;
     }
 
     private boolean isValid(String eid, String ps1, String ps2, String mobNo) {

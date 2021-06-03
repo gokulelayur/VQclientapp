@@ -4,7 +4,7 @@ package com.example.vqclientapp;
 import java.io.Serializable;
 
 public class department implements Serializable {
-    String name, descript, st, et;
+    String name,ogDeptName, descript, st, et;
     int avgt;
     int maxtokens;
     int currenttoken;
@@ -14,11 +14,13 @@ public class department implements Serializable {
     public department() {
     }
 
-    public department(String name, String descript, int maxtokens, String st, String et, int avgt) {
+
+    public department(String name, String ogName,String descript, int maxtokens, String st, String et, int avgt) {
         this.activenow = false;
         this.currenttoken = -1;
         this.nextavailabletoken = -1;
         this.name = name;
+        this.ogDeptName=ogName;
         this.descript = descript;
         this.st = st;
         this.et = et;
@@ -89,6 +91,14 @@ public class department implements Serializable {
     public void setNextavailabletoken(int nextavailabletoken) {
         this.nextavailabletoken = nextavailabletoken;
     }
+    public String getOgDeptName() {
+        return ogDeptName;
+    }
+
+    public void setOgDeptName(String ogDeptName) {
+        this.ogDeptName = ogDeptName;
+    }
+
 
 
     public boolean isActivenow() {

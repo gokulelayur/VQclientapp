@@ -6,8 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".addDepartment">
 
+
     <LinearLayout
-        android:id="@+id/dname_layout"
+        android:id="@+id/ogDName_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,7 +18,7 @@
             android:text="Department Name : " />
 
         <EditText
-            android:id="@+id/deptName"
+            android:id="@+id/ogDeptName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />
@@ -27,7 +28,7 @@
         android:id="@+id/maxtokens_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dname_layout">
+        android:layout_below="@+id/ogDName_layout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -119,12 +120,68 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/dname_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avgtime_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Department ID : " />
+
+        <EditText
+            android:id="@+id/deptID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </LinearLayout>
+    //id but saved in name
+    <LinearLayout
+        android:id="@+id/deptPassword_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dname_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password " />
+
+        <EditText
+            android:id="@+id/deptPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/deptConfirmPassword_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/deptPassword_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm Password : " />
+
+        <EditText
+            android:id="@+id/deptConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/avgtime_layout"
+        android:layout_below="@id/deptConfirmPassword_layout"
         android:layout_marginTop="100px"
         android:gravity="center">
 

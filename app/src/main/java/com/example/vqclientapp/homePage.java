@@ -36,16 +36,7 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        Bundle extras;
-        if (savedInstanceState == null) {
-            extras = getIntent().getExtras();
-            if (extras == null) {
-                uname = null;
-            } else {
-                uname = extras.getString("uname");
-            }
-        }
-        SaveId.setId(this, uname);
+        uname=SaveId.getId(homePage.this);
         SaveId.setDepID(homePage.this, "defaut");
 
         recyclerView = findViewById(R.id.deptRecycler);
@@ -85,7 +76,7 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
             @Override
             public void onClick(View v) {
                 Intent gotoadddept = new Intent(homePage.this, addDepartment.class);
-                gotoadddept.putExtra("uname", uname);
+//                gotoadddept.putExtra("uname", uname);
                 startActivity(gotoadddept);
             }
         });
@@ -94,20 +85,19 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
             @Override
             public void onClick(View v) {
                 SaveId.setId(homePage.this, "defaut");
+                SaveId.setIsAdmin(homePage.this,false);
                 Intent goBackToSignin = new Intent(homePage.this, signin.class);
                 startActivity(goBackToSignin);
             }
         });
 
-
+        Toast.makeText(this, "dept ID set to "+SaveId.getDepID(this), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDeptListClick(int position) {
-        department passdep = departmentArrayList.get(position);
         Intent deptListClicked = new Intent(homePage.this, departmenthome.class);
-        deptListClicked.putExtra("passdep", passdep);
-        deptListClicked.putExtra("uname", uname);
+        SaveId.setDepID(homePage.this,departmentArrayList.get(position).getName());
         startActivity(deptListClicked);
     }
 }

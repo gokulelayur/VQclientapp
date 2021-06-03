@@ -8,6 +8,7 @@ public class SaveId {
 
     static final String ID = "ID";
     static final String depID = "depID";
+    static final String IsAdmin="false";
 
 
     static SharedPreferences getSharedPreferences(Context ctx) {
@@ -32,5 +33,15 @@ public class SaveId {
 
     public static String getDepID(Context ctx) {
         return getSharedPreferences(ctx).getString(depID, "defaut");
+    }
+
+    public static void setIsAdmin(Context ctx, boolean value) {
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putBoolean(IsAdmin,value);
+        editor.commit();
+    }
+
+    public static boolean getIsAdmin(Context ctx) {
+        return getSharedPreferences(ctx).getBoolean(IsAdmin, false);
     }
 }
