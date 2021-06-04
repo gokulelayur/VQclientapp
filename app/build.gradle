@@ -66,5 +66,9 @@ dependencies {
 
     // for QR Scanner
     implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+    // FOR LOTTIEFILES
 
+
+    def lottieVersion = "3.7.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }

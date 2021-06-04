@@ -36,6 +36,8 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        loadingScreen.startloading(homePage.this,"loading");        //LOADING SCREEN START
+
         uname=SaveId.getId(homePage.this);
         SaveId.setDepID(homePage.this, "defaut");
 
@@ -62,6 +64,8 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
 
                 }
                 depAd.notifyDataSetChanged();
+
+                loadingScreen.stoploading();   //LOADING SCREEN STOP
             }
 
             @Override

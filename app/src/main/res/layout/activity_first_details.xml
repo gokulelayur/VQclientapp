@@ -6,91 +6,241 @@
     android:layout_height="match_parent"
     tools:context=".firstDetails">
 
+<!--    <LinearLayout-->
+<!--        android:id="@+id/cname_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Company Name : " />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/cname"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:inputType="text" />-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/cat_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/cname_layout">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Category : " />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/catagory"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/description_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/cat_layout"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Description : " />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/description"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/map_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/description_layout">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Map Link : " />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/map"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/button_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/map_layout"-->
+<!--        android:layout_marginTop="100px"-->
+<!--        android:gravity="center">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/firstDetailsNextButton"-->
+<!--            android:layout_width="500px"-->
+<!--            android:layout_height="150px"-->
+<!--            android:text="Next" />-->
+<!--    </LinearLayout>-->
     <LinearLayout
-        android:id="@+id/cname_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Company Name : " />
-
-        <EditText
-            android:id="@+id/cname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/cat_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cname_layout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Category : " />
-
-        <EditText
-            android:id="@+id/catagory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/description_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cat_layout"
+        android:layout_height="match_parent"
+        android:background="@color/primer_orange"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description : " />
-
-        <EditText
-            android:id="@+id/description"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingTop="30dp"
+            android:paddingBottom="20dp"
+            android:src="@drawable/img" />
+        //BOTTOM RECTANGLE
 
-    <LinearLayout
-        android:id="@+id/map_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/description_layout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Map Link : " />
-
-        <EditText
-            android:id="@+id/map"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/login_rectangle"
+            android:orientation="vertical">
+
+
+            //FOR CIRCLE
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="15dp"
+                android:layout_weight="3.5"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_height="match_parent"
+                    android:layout_width="120dp"
+                    app:lottie_rawRes="@raw/signinlottie"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    android:background="@drawable/signin_circle"
+                    android:elevation="5dp"
+                    android:layout_weight="1"/>
+
+
+            </LinearLayout>
+
+            //SIGNUP
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="REGISTER"
+                    android:textSize="25sp"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold"
+                    android:textColor="@color/secondary_blue"
+                    android:layout_weight="15"
+                    android:gravity="center"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="15dp">
+
+
+                    <EditText
+                        android:id="@+id/cname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_corner_edittext"
+                        android:elevation="2dp"
+                        android:paddingVertical="3dp"
+                        android:paddingStart="30dp"
+                        android:hint="Company Name"
+                        android:textColorHint="@color/edittext_font"
+                        android:textSize="25sp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="5dp"/>
+
+                    <EditText
+                        android:id="@+id/catagory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_corner_edittext"
+                        android:elevation="2dp"
+                        android:paddingVertical="3dp"
+                        android:paddingStart="30dp"
+                        android:hint="Category"
+                        android:textColorHint="@color/edittext_font"
+                        android:textSize="25sp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="5dp"/>
+                    <EditText
+                        android:id="@+id/description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_corner_edittext"
+                        android:elevation="2dp"
+                        android:paddingVertical="3dp"
+                        android:paddingStart="30dp"
+                        android:hint="Description"
+                        android:textColorHint="@color/edittext_font"
+                        android:textSize="25sp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="5dp"/>
+                    <EditText
+                        android:id="@+id/map"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_corner_edittext"
+                        android:elevation="2dp"
+                        android:paddingVertical="3dp"
+                        android:paddingStart="30dp"
+                        android:hint="Map Link"
+                        android:textColorHint="@color/edittext_font"
+                        android:textSize="25sp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="5dp"/>
+                    <Button
+                        android:id="@+id/firstDetailsNextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_corner_button"
+                        android:text="Next"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/secondary_blue"
+                        android:paddingHorizontal="50dp"
+                        android:paddingVertical="5dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="20dp"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/button_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/map_layout"
-        android:layout_marginTop="100px"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/firstDetailsNextButton"
-            android:layout_width="500px"
-            android:layout_height="150px"
-            android:text="Next" />
-    </LinearLayout>
-
 
 </RelativeLayout>

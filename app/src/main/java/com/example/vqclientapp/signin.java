@@ -69,6 +69,7 @@ public class signin extends AppCompatActivity {
                             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                                 if(snapshot.exists()){
                                     if(snapshot.child("password").getValue().toString().equals(passwd)){
+                                        loadingScreen.startloading(signin.this,"loading");
                                         String uname;
                                         uname = snapshot.child("companyID").getValue().toString();
                                         String deptID;
@@ -99,12 +100,16 @@ public class signin extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+
+                                    loadingScreen.startloading(signin.this,"loading");
+
                                     String id=username.replace(".", "-");
                                     Intent companySigninSuccessful = new Intent(signin.this, homePage.class);
                                     SaveId.setId(signin.this, id);
                                     SaveId.setIsAdmin(signin.this,true);
                                     startActivity(companySigninSuccessful);
                                     Toast.makeText(signin.this, "Company Signed in Successfully", Toast.LENGTH_SHORT).show();
+
                                     finish();
                                 } else {
                                     Toast.makeText(signin.this, "Sign in Failed", Toast.LENGTH_SHORT).show();
@@ -132,6 +137,8 @@ public class signin extends AppCompatActivity {
             // AUTO LOGIN
             if(SaveId.getIsAdmin(signin.this)==true) {
 
+                loadingScreen.startloading(signin.this,"loading");
+
                 // COMPANY ADMIN AUTO LOGIN
                 Intent companySigninSuccessful = new Intent(signin.this, homePage.class);
                 startActivity(companySigninSuccessful);
@@ -139,6 +146,8 @@ public class signin extends AppCompatActivity {
                 finish();
             }
             else {
+
+                loadingScreen.startloading(signin.this,"loading");
 
                 // DEPARTMENT AUTO LOGIN
 

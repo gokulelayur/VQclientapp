@@ -59,6 +59,11 @@ public class homeFragment extends Fragment {
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
+//        departmenthome.stopDeptHomeLoadingScreen(); // LOADING SCREEN STOPPED
+//                loadingScreen.startloading(getActivity(),"loading");        //LOADING SCREEN START
+
+
         TextView currentTokenDisp = view.findViewById(R.id.display_current_token);
         recyclerView = view.findViewById(R.id.queueRecycler);
         adapterQueueRecycler = new adapterQueueRecycler(tokenArrayList);
@@ -105,6 +110,12 @@ public class homeFragment extends Fragment {
 
 
                                 adapterQueueRecycler.notifyDataSetChanged();
+
+
+
+                                //
+
+
                             }
 
                             @Override
@@ -115,6 +126,7 @@ public class homeFragment extends Fragment {
                         });
                     }
                 }
+                loadingScreen.stoploading();
             }
 
             @Override

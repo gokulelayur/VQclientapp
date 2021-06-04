@@ -30,6 +30,8 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_departmenthome);
 
+        loadingScreen.startloading(departmenthome.this,"loading");    //LOADING SCREEN STARTS
+
         if (!Python.isStarted()) {
             Python.start(new AndroidPlatform(this));
         }
@@ -89,6 +91,9 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public static void stopDeptHomeLoadingScreen(){
+        loadingScreen.stoploading();
     }
 
     @Override
