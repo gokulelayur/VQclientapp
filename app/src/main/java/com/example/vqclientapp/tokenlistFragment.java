@@ -1,5 +1,6 @@
 package com.example.vqclientapp;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,6 +38,9 @@ public class tokenlistFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tokenlist, container, false);
+
+        loadingScreen.startloading(getActivity(),"Fetching data");            //LOADING SCREEN STARTED
+
         recyclerView = view.findViewById(R.id.toklistRecycler);
 
 
@@ -64,6 +68,7 @@ public class tokenlistFragment extends Fragment {
                     tokenArrayList.add(token);
                 }
                 adapterTokenlistRecycler.notifyDataSetChanged();
+                loadingScreen.stoploading();
             }
 
             @Override

@@ -33,7 +33,7 @@ public class firstDetails extends AppCompatActivity {
                 desc = description.getText().toString();
                 mapLink = map.getText().toString();
 //                Toast.makeText(firstDetails.this, "abc" +noDept, Toast.LENGTH_SHORT).show();
-                if (company == null || cat == null || desc == null || mapLink == null) {
+                if (company.isEmpty() || cat.isEmpty() || desc.isEmpty()|| mapLink.isEmpty()) {
 
                     Toast.makeText(firstDetails.this, "Fill all details", Toast.LENGTH_SHORT).show();
 

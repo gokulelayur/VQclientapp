@@ -60,8 +60,7 @@ public class homeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-//        departmenthome.stopDeptHomeLoadingScreen(); // LOADING SCREEN STOPPED
-//                loadingScreen.startloading(getActivity(),"loading");        //LOADING SCREEN START
+                loadingScreen.startloading(getActivity(),"Loading");        //LOADING SCREEN STARTED
 
 
         TextView currentTokenDisp = view.findViewById(R.id.display_current_token);

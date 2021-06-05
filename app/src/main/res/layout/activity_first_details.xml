@@ -6,104 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".firstDetails">
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/cname_layout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Company Name : " />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/cname"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:inputType="text" />-->
-<!--    </LinearLayout>-->
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/cat_layout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/cname_layout">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Category : " />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/catagory"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content" />-->
-<!--    </LinearLayout>-->
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/description_layout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/cat_layout"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Description : " />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/description"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content" />-->
-<!--    </LinearLayout>-->
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/map_layout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/description_layout">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Map Link : " />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/map"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content" />-->
-
-
-<!--    </LinearLayout>-->
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/button_layout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/map_layout"-->
-<!--        android:layout_marginTop="100px"-->
-<!--        android:gravity="center">-->
-
-<!--        <Button-->
-<!--            android:id="@+id/firstDetailsNextButton"-->
-<!--            android:layout_width="500px"-->
-<!--            android:layout_height="150px"-->
-<!--            android:text="Next" />-->
-<!--    </LinearLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primer_orange"
         android:orientation="vertical">
 
-        <ImageView
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="3"-->
+<!--            android:paddingTop="30dp"-->
+<!--            android:paddingBottom="20dp"-->
+<!--            android:src="@drawable/img" />-->
+        <com.airbnb.lottie.LottieAnimationView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:paddingTop="30dp"
-            android:paddingBottom="20dp"
-            android:src="@drawable/img" />
+            app:lottie_rawRes="@raw/inext5"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"/>
+
         //BOTTOM RECTANGLE
 
         <LinearLayout
@@ -121,19 +44,18 @@
                 android:layout_height="match_parent"
                 android:paddingVertical="15dp"
                 android:layout_weight="3.5"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:gravity="center">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_height="match_parent"
+                        android:layout_width="120dp"
+                        android:background="@drawable/signin_circle"
+                        app:lottie_rawRes="@raw/signinlottie"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        />
 
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:layout_height="match_parent"
-                    android:layout_width="120dp"
-                    app:lottie_rawRes="@raw/signinlottie"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true"
-                    android:background="@drawable/signin_circle"
-                    android:elevation="5dp"
-                    android:layout_weight="1"/>
 
 
             </LinearLayout>
@@ -144,7 +66,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="top">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -160,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
+                    android:gravity="top"
                     android:orientation="vertical"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="15dp">
@@ -172,13 +95,13 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/rounded_corner_edittext"
                         android:elevation="2dp"
-                        android:paddingVertical="3dp"
+                        android:paddingVertical="7dp"
                         android:paddingStart="30dp"
                         android:hint="Company Name"
-                        android:textColorHint="@color/edittext_font"
+                        android:textColor="@color/edittext_font"
+                        android:textColorHint="@color/Hintcolor"
                         android:textSize="25sp"
-                        android:layout_weight="1"
-                        android:layout_marginTop="5dp"/>
+                        android:layout_marginTop="9dp"/>
 
                     <EditText
                         android:id="@+id/catagory"
@@ -186,39 +109,39 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/rounded_corner_edittext"
                         android:elevation="2dp"
-                        android:paddingVertical="3dp"
+                        android:paddingVertical="7dp"
                         android:paddingStart="30dp"
                         android:hint="Category"
-                        android:textColorHint="@color/edittext_font"
+                        android:textColor="@color/edittext_font"
+                        android:textColorHint="@color/Hintcolor"
                         android:textSize="25sp"
-                        android:layout_weight="1"
-                        android:layout_marginTop="5dp"/>
+                        android:layout_marginTop="9dp"/>
                     <EditText
                         android:id="@+id/description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/rounded_corner_edittext"
                         android:elevation="2dp"
-                        android:paddingVertical="3dp"
+                        android:paddingVertical="7dp"
                         android:paddingStart="30dp"
                         android:hint="Description"
-                        android:textColorHint="@color/edittext_font"
+                        android:textColor="@color/edittext_font"
+                        android:textColorHint="@color/Hintcolor"
                         android:textSize="25sp"
-                        android:layout_weight="1"
-                        android:layout_marginTop="5dp"/>
+                        android:layout_marginTop="9dp"/>
                     <EditText
                         android:id="@+id/map"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/rounded_corner_edittext"
                         android:elevation="2dp"
-                        android:paddingVertical="3dp"
+                        android:paddingVertical="7dp"
                         android:paddingStart="30dp"
                         android:hint="Map Link"
-                        android:textColorHint="@color/edittext_font"
+                        android:textColor="@color/edittext_font"
+                        android:textColorHint="@color/Hintcolor"
                         android:textSize="25sp"
-                        android:layout_weight="1"
-                        android:layout_marginTop="5dp"/>
+                        android:layout_marginTop="9dp"/>
                     <Button
                         android:id="@+id/firstDetailsNextButton"
                         android:layout_width="wrap_content"
@@ -229,8 +152,8 @@
                         app:backgroundTint="@color/secondary_blue"
                         android:paddingHorizontal="50dp"
                         android:paddingVertical="5dp"
-                        android:layout_weight="1"
-                        android:layout_marginTop="20dp"/>
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center_horizontal"/>
 
 
                 </LinearLayout>

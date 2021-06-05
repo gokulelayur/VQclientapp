@@ -27,7 +27,7 @@ import java.util.Objects;
 
 public class signin extends AppCompatActivity {
 
-    private TextView signup;
+    private Button signup;
     String username, passwd;
     private FirebaseAuth auth;
 
@@ -53,75 +53,78 @@ public class signin extends AppCompatActivity {
                     username = UserNameView.getText().toString();
                     passwd = pswd.getText().toString();
 
-
-                    int count=0;
-                    for (char c: username.toCharArray()) {
-                        if(c=='@')
-                            count+=1;
+                    if(username.isEmpty() || passwd.isEmpty()){
+                        Toast.makeText(signin.this, "UserName or Password cannot be Empty", Toast.LENGTH_SHORT).show();
                     }
+                    else {
+
+                        int count = 0;
+                        for (char c : username.toCharArray()) {
+                            if (c == '@')
+                                count += 1;
+                        }
 
 
-                    if(count>1){
-                        //DEPT LOGIN
-                        String deptuname=username.replace(".","-");
-                        FirebaseDatabase.getInstance().getReference("main").child("DepartmentCredentials").child(deptuname).addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                                if(snapshot.exists()){
-                                    if(snapshot.child("password").getValue().toString().equals(passwd)){
-                                        loadingScreen.startloading(signin.this,"loading");
-                                        String uname;
-                                        uname = snapshot.child("companyID").getValue().toString();
-                                        String deptID;
-                                        deptID = Objects.requireNonNull(snapshot.child("deptID").getValue()).toString();
-                                        Intent deptSigninSuccessfull = new Intent(signin.this, departmenthome.class);
-                                        SaveId.setId(signin.this,uname);
-                                        SaveId.setDepID(signin.this,deptID);
-                                        SaveId.setIsAdmin(signin.this,false);
-                                        startActivity(deptSigninSuccessfull);
-                                        Toast.makeText(signin.this, "Dept Signed in Successfully", Toast.LENGTH_SHORT).show();
-                                        finish();
+                        if (count > 1) {
+                            //DEPT LOGIN
+                            String deptuname = username.replace(".", "-");
+                            FirebaseDatabase.getInstance().getReference("main").child("DepartmentCredentials").child(deptuname).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                    if (snapshot.exists()) {
+                                        if (snapshot.child("password").getValue().toString().equals(passwd)) {
+                                            loadingScreen.startloading(signin.this, "loading");
+                                            String uname;
+                                            uname = snapshot.child("companyID").getValue().toString();
+                                            String deptID;
+                                            deptID = Objects.requireNonNull(snapshot.child("deptID").getValue()).toString();
+                                            Intent deptSigninSuccessfull = new Intent(signin.this, departmenthome.class);
+                                            SaveId.setId(signin.this, uname);
+                                            SaveId.setDepID(signin.this, deptID);
+                                            SaveId.setIsAdmin(signin.this, false);
+                                            startActivity(deptSigninSuccessfull);
+                                            Toast.makeText(signin.this, "Dept Signed in Successfully", Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        } else {
+                                            Toast.makeText(signin.this, "Sign in Failed", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
-                                    else{
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                                }
+                            });
+                        } else {
+                            // COMPANY LOGIN
+                            auth.signInWithEmailAndPassword(username, passwd).addOnCompleteListener(signin.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+
+                                        loadingScreen.startloading(signin.this, "loading");
+
+                                        String id = username.replace(".", "-");
+                                        Intent companySigninSuccessful = new Intent(signin.this, homePage.class);
+                                        SaveId.setId(signin.this, id);
+                                        SaveId.setIsAdmin(signin.this, true);
+                                        startActivity(companySigninSuccessful);
+                                        Toast.makeText(signin.this, "Company Signed in Successfully", Toast.LENGTH_SHORT).show();
+
+                                        finish();
+                                    } else {
                                         Toast.makeText(signin.this, "Sign in Failed", Toast.LENGTH_SHORT).show();
                                     }
                                 }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-                            }
-                        });
-                    }
-                    else {
-                        // COMPANY LOGIN
-                        auth.signInWithEmailAndPassword(username, passwd).addOnCompleteListener(signin.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-
-                                    loadingScreen.startloading(signin.this,"loading");
-
-                                    String id=username.replace(".", "-");
-                                    Intent companySigninSuccessful = new Intent(signin.this, homePage.class);
-                                    SaveId.setId(signin.this, id);
-                                    SaveId.setIsAdmin(signin.this,true);
-                                    startActivity(companySigninSuccessful);
-                                    Toast.makeText(signin.this, "Company Signed in Successfully", Toast.LENGTH_SHORT).show();
-
-                                    finish();
-                                } else {
-                                    Toast.makeText(signin.this, "Sign in Failed", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                            });
+                        }
                     }
                 }
             });
 
 
-            signup = (TextView) findViewById(R.id.signup);
+            signup = findViewById(R.id.signup);
             signup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

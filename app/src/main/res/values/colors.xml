@@ -15,4 +15,5 @@
     <color name="secondary_blue">#30475E</color>
     <color name="tertiary_white">#F4F4F4</color>
     <color name="edittext_font">#222831</color>
+    <color name="Hintcolor">#74222831</color>
 </resources>

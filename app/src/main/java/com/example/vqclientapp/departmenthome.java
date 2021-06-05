@@ -30,23 +30,10 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_departmenthome);
 
-        loadingScreen.startloading(departmenthome.this,"loading");    //LOADING SCREEN STARTS
 
         if (!Python.isStarted()) {
             Python.start(new AndroidPlatform(this));
         }
-
-//        Bundle extras;
-//        if (savedInstanceState == null) {
-//            extras = getIntent().getExtras();
-//            if (extras == null) {
-//                uname = null;
-//            } else {
-//                uname = extras.getString("uname");
-//                thisdepartment = (com.example.vqclientapp.department) getIntent().getSerializableExtra("passdep");
-//            }
-//        }
-//        SaveId.setDepID(this, thisdepartment.getName());
 
         Toolbar toolbar = findViewById(R.id.depthometoolbar);
         setSupportActionBar(toolbar);
