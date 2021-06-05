@@ -42,6 +42,7 @@ public class adapterDepts extends RecyclerView.Adapter<adapterDepts.Viewholder> 
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         department dep = deptlist.get(position);
         holder.deptname.setText(dep.getOgDeptName().toUpperCase());
+        holder.currentToken.setText(String.valueOf(dep.getCurrenttoken()));
     }
 
     @Override
@@ -51,14 +52,13 @@ public class adapterDepts extends RecyclerView.Adapter<adapterDepts.Viewholder> 
 
     class Viewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView img;
-        TextView deptname;
+        TextView deptname,currentToken;
         deptListListner listnerDeptList;
 
         public Viewholder(@NonNull View itemView, deptListListner listnerDeptList) {
             super(itemView);
-            //        img=itemView.findViewById(R.id.deptIcon);
             deptname = itemView.findViewById(R.id.deptName);
+            currentToken=itemView.findViewById(R.id.deptCurrentToken);
             this.listnerDeptList = listnerDeptList;
 
             itemView.setOnClickListener(this);

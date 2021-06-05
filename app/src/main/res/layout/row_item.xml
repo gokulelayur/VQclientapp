@@ -3,21 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_margin="@dimen/cardview_default_elevation"
-    android:background="@color/white"
-    android:orientation="horizontal">
+    android:layout_height="77dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/rectangle"
+    android:orientation="horizontal"
+    android:gravity="start">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:background="@drawable/signin_circle"
+        android:layout_margin="5dp">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_home"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/deptName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:paddingStart="25dp"
-        android:text="Dept Name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/deptName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dept Name"
+            android:paddingStart="30dp"
+            android:textColor="@color/secondary_blue"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="35dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Token : "/>
+            <TextView
+                android:id="@+id/deptCurrentToken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NA"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

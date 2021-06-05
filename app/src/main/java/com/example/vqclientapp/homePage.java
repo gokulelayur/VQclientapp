@@ -9,9 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,35 +25,66 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class homePage extends AppCompatActivity implements adapterDepts.deptListListner {
     String uname;
     RecyclerView recyclerView;
     adapterDepts depAd;
     FirebaseDatabase rootNode;
-    DatabaseReference reference;
+    DatabaseReference reference, compRef;
     ArrayList<department> departmentArrayList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        loadingScreen.startloading(homePage.this,"loading");        //LOADING SCREEN START
+        loadingScreen.startloading(homePage.this, "loading");        //LOADING SCREEN START
 
-        uname=SaveId.getId(homePage.this);
+        uname = SaveId.getId(homePage.this);
         SaveId.setDepID(homePage.this, "defaut");
+
+
 
         recyclerView = findViewById(R.id.deptRecycler);
 
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("main").child("company").child(uname).child("department");
+        compRef = rootNode.getReference("main/company").child(uname);
+
+
+
+        TextView compName, compDesc, compCat;
+        compName = findViewById(R.id.profileCName);
+        compCat = findViewById(R.id.profileCat);
+        compDesc = findViewById(R.id.profileDesc);
+        compRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                compName.setText(Objects.requireNonNull(snapshot.child("company").getValue()).toString());
+                compCat.setText(Objects.requireNonNull(snapshot.child("cat").getValue()).toString());
+                compDesc.setText(Objects.requireNonNull(snapshot.child("desc").getValue()).toString());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DividerItemDecoration sep = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(sep);
+//        DividerItemDecoration sep = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+//        recyclerView.addItemDecoration(sep);
 
         departmentArrayList = new ArrayList<>();
 
@@ -75,7 +111,7 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
         });
 
 
-        Button addDept = findViewById(R.id.homeAddDept);
+        ImageView addDept = findViewById(R.id.homeAddDept);
         addDept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,24 +120,22 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
                 startActivity(gotoadddept);
             }
         });
-        Button companyLogout = findViewById(R.id.companyLogout);
+        ImageView companyLogout = findViewById(R.id.companyLogout);
         companyLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SaveId.setId(homePage.this, "defaut");
-                SaveId.setIsAdmin(homePage.this,false);
+                SaveId.setIsAdmin(homePage.this, false);
                 Intent goBackToSignin = new Intent(homePage.this, signin.class);
                 startActivity(goBackToSignin);
             }
         });
-
-        Toast.makeText(this, "dept ID set to "+SaveId.getDepID(this), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDeptListClick(int position) {
         Intent deptListClicked = new Intent(homePage.this, departmenthome.class);
-        SaveId.setDepID(homePage.this,departmentArrayList.get(position).getName());
+        SaveId.setDepID(homePage.this, departmentArrayList.get(position).getName());
         startActivity(deptListClicked);
     }
 }
