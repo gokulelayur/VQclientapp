@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -19,8 +20,15 @@ import android.widget.Toast;
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class departmenthome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
@@ -38,14 +46,29 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
         Toolbar toolbar = findViewById(R.id.depthometoolbar);
         setSupportActionBar(toolbar);
 
-
         drawer = findViewById(R.id.dept_drawer_layout);
         NavigationView navigationView = findViewById(R.id.dept_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerview = navigationView.getHeaderView(0);
         TextView drawerCompanyName = headerview.findViewById(R.id.drawer_comp_name);
-        drawerCompanyName.setText(SaveId.getDepID(departmenthome.this).toUpperCase());
-        // HAVE TO CHANGE TO DEPT NAME CURRENTLY DEPT ID
+
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference("main/company").child(SaveId.getId(departmenthome.this));
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+               toolbar.setTitle(Objects.requireNonNull(snapshot.child("department").child(SaveId.getDepID(departmenthome.this)).child("ogDeptName").getValue()).toString().toUpperCase());
+               drawerCompanyName.setText(Objects.requireNonNull(snapshot.child("company").getValue()).toString());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+
+
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,

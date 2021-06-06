@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +46,7 @@ public class homeFragment extends Fragment {
 
     RecyclerView recyclerView;
     adapterQueueRecycler adapterQueueRecycler;
+    TextView tokName,tokPlace,tokAge,emptyRecycler;
 
     token currentToken = new token();
     ArrayList<Integer> queue = new ArrayList<>();
@@ -58,6 +61,7 @@ public class homeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
 
 
                 loadingScreen.startloading(getActivity(),"Loading");        //LOADING SCREEN STARTED
@@ -77,6 +81,11 @@ public class homeFragment extends Fragment {
         ref = thisDeptRef.child("TOKEN");
 
 
+        tokName=view.findViewById(R.id.currentTokenName);
+        tokPlace=view.findViewById(R.id.currentTokenPlace);
+        tokAge=view.findViewById(R.id.currentTokenAge);
+
+        emptyRecycler=view.findViewById(R.id.recyclerIsEmptyText);
         //----------QUEUE RECYCLER UPDATER------------------------------------------------------------------------
 
 
@@ -106,7 +115,9 @@ public class homeFragment extends Fragment {
                                 //Current Token
                                 currentToken = tokenArrayList.get(0);
                                 currentTokenDisp.setText(String.valueOf(currentToken.getTokenNo()));
-
+                                tokName.setText(currentToken.getTokenName());
+                                tokPlace.setText(currentToken.getTokenPlace());
+                                tokAge.setText(String.valueOf(currentToken.getTokenAge()));
 
                                 adapterQueueRecycler.notifyDataSetChanged();
 
@@ -124,6 +135,10 @@ public class homeFragment extends Fragment {
                             }
                         });
                     }
+                }
+
+                if(tokenArrayList.isEmpty()){
+                    emptyRecycler.setVisibility(View.VISIBLE);
                 }
                 loadingScreen.stoploading();
             }
@@ -231,7 +246,7 @@ public class homeFragment extends Fragment {
         //----------ADD OFFLINE CUSTOMER------------------------------------------------------------------------
 
 
-        Button addCust = view.findViewById(R.id.addCustomer);
+        ImageButton addCust = view.findViewById(R.id.addCustomer);
         addCust.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

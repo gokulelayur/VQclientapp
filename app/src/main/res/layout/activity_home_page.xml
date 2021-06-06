@@ -17,37 +17,23 @@
             android:background="@color/primer_orange"
             android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:layout_weight="1.5">
+            android:layout_weight="2">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/companyLogout"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/logout"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="120dp"-->
-<!--                    android:layout_height="120dp"-->
-<!--                    android:background="@drawable/signin_circle"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent">-->
-
-<!--                    -->
-
-<!--                </LinearLayout>-->
                 <com.airbnb.lottie.LottieAnimationView
                     android:layout_width="120dp"
                     android:layout_height="120dp"
@@ -65,9 +51,8 @@
                     android:id="@+id/homeAddDept"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
                     android:src="@drawable/add"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -86,15 +71,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Company Name"
-                    android:textSize="40sp"
-                    android:fontFamily="serif-monospace"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
                 <TextView
                     android:id="@+id/profileCat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="@color/white"/>
                 <TextView
                     android:id="@+id/profileDesc"
@@ -102,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:text="Description"
                     android:textColor="#30475E"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:maxWidth="300dp"
                     android:background="#DCDCDC"/>
 
@@ -114,7 +98,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/lightGrey"
+            android:background="@color/quartGrey"
             android:orientation="vertical"
             android:layout_weight="1">
             <androidx.recyclerview.widget.RecyclerView
