@@ -7,7 +7,7 @@
     android:background="@drawable/token_recycler_item_background"
     android:orientation="horizontal"
     android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="5dp">
+    android:layout_marginBottom="5dp">
 
 
     <LinearLayout

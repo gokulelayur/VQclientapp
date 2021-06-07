@@ -137,7 +137,10 @@ public class homeFragment extends Fragment {
                     }
                 }
 
-                if(tokenArrayList.isEmpty()){
+                if(!tokenArrayList.isEmpty()){
+                    emptyRecycler.setVisibility(View.GONE);
+                }
+                else {
                     emptyRecycler.setVisibility(View.VISIBLE);
                 }
                 loadingScreen.stoploading();

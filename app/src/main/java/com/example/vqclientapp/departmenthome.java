@@ -31,8 +31,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class departmenthome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    DrawerLayout drawer;
 
+    public static String comName;
+    public static String deptName;
+    DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +59,11 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                toolbar.setTitle(Objects.requireNonNull(snapshot.child("department").child(SaveId.getDepID(departmenthome.this)).child("ogDeptName").getValue()).toString().toUpperCase());
-               drawerCompanyName.setText(Objects.requireNonNull(snapshot.child("company").getValue()).toString());
+               drawerCompanyName.setText(Objects.requireNonNull(snapshot.child("company").getValue()).toString().toUpperCase());
 
+
+                deptName=toolbar.getTitle().toString();
+                comName= drawerCompanyName.getText().toString();
             }
 
             @Override
@@ -80,6 +85,8 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
                     new homeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+
+
 
     }
 
@@ -114,6 +121,12 @@ public class departmenthome extends AppCompatActivity implements NavigationView.
             super.onBackPressed();
 
         }
+    }
+    public static String getCompName(){
+        return comName;
+    }
+    public static String  getDepartName(){
+        return deptName;
     }
 
 }

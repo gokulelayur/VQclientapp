@@ -37,39 +37,8 @@ public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenl
         token token = tokenlist.get(position);
         holder.tokenName.setText(token.getTokenName());
         holder.tokenNo.setText(String.valueOf(token.getTokenNo()));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//                Toast.makeText(v.getContext(), "", Toast.LENGTH_SHORT).show();
-
-                Dialog tokendetailsdialog;
-
-                tokendetailsdialog = new Dialog(v.getContext());
-                ImageView closeimg;
-                TextView tokenNo, tokenName, tokenPlace, tokenAge;
-                tokendetailsdialog.setContentView(R.layout.tokendetailspopup);
-                closeimg = tokendetailsdialog.findViewById(R.id.popupClosebuttImg);
-                tokenNo = tokendetailsdialog.findViewById(R.id.popUpTokenNo);
-                tokenName = tokendetailsdialog.findViewById(R.id.popUpTokenName);
-                tokenAge = tokendetailsdialog.findViewById(R.id.popUpTokenAge);
-                tokenPlace = tokendetailsdialog.findViewById(R.id.popUpTokenPlace);
-                tokenNo.setText(String.valueOf(token.getTokenNo()));
-                tokenName.setText(token.getTokenName());
-                tokenAge.setText(String.valueOf(token.getTokenAge()));
-                tokenPlace.setText(token.getTokenPlace());
-                closeimg.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        tokendetailsdialog.dismiss();
-                    }
-                });
-
-                tokendetailsdialog.show();
-
-
-            }
-        });
+        holder.tokenAge.setText(String.valueOf(token.getTokenAge()));
+        holder.tokenPlace.setText(token.getTokenPlace());
     }
 
     @Override
@@ -79,13 +48,15 @@ public class adapterTokenlistRecycler extends RecyclerView.Adapter<adapterTokenl
 
     class Viewholder extends RecyclerView.ViewHolder {
 
-        TextView tokenName, tokenNo;
+        TextView tokenName, tokenNo,tokenAge,tokenPlace;
 
 
         public Viewholder(@NonNull @NotNull View itemView) {
             super(itemView);
             tokenName = itemView.findViewById(R.id.tokenlisttokenName);
             tokenNo = itemView.findViewById(R.id.tokenlisttokenNo);
+            tokenAge=itemView.findViewById(R.id.tokenlistTokenAge);
+            tokenPlace=itemView.findViewById(R.id.tokenlistTokenPlace);
         }
     }
 }

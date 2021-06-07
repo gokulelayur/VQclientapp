@@ -89,6 +89,7 @@
                         android:paddingVertical="10dp"
                         android:paddingStart="30dp"
                         android:hint="Password"
+                        android:inputType="textPassword"
                         android:textColor="@color/edittext_font"
                         android:textColorHint="@color/Hintcolor"
                         android:textSize="25sp"

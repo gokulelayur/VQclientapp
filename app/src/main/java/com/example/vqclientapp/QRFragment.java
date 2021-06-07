@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 public class QRFragment extends Fragment {
 
@@ -31,6 +33,12 @@ public class QRFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_qr,container,false);
 
         loadingScreen.startloading(getActivity(),"QR Generating");   //LOADING SREEN STARTED
+
+        TextView companyName=view.findViewById(R.id.textView3);
+        TextView departName=view.findViewById(R.id.textView4);
+
+        companyName.setText(departmenthome.getCompName());
+        departName.setText(departmenthome.getDepartName());
 
         imageQR=view.findViewById(R.id.viewQR);
         String deptCompanyID=SaveId.getDepID(getContext())+SaveId.getId(getContext());
