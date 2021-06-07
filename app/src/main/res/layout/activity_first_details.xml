@@ -16,9 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            app:lottie_rawRes="@raw/inext5"
             app:lottie_autoPlay="true"
-            app:lottie_loop="false"/>
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/inext5" />
 
         //BOTTOM RECTANGLE
 
@@ -35,20 +35,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingVertical="15dp"
                 android:layout_weight="3.5"
-                android:gravity="center">
+                android:gravity="center"
+                android:paddingVertical="15dp">
 
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:layout_height="match_parent"
-                        android:layout_width="120dp"
-                        android:background="@drawable/signin_circle"
-                        app:lottie_rawRes="@raw/signinlottie"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        />
-
-
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/signin_circle"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/signinlottie" />
 
 
             </LinearLayout>
@@ -59,18 +56,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="top">
+                android:gravity="top"
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="REGISTER"
-                    android:textSize="25sp"
-                    android:fontFamily="monospace"
-                    android:textStyle="bold"
-                    android:textColor="@color/secondary_blue"
                     android:layout_weight="15"
-                    android:gravity="center"/>
+                    android:fontFamily="monospace"
+                    android:gravity="center"
+                    android:text="REGISTER"
+                    android:textColor="@color/secondary_blue"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,67 +84,70 @@
                         android:id="@+id/cname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
                         android:background="@drawable/rounded_corner_edittext"
                         android:elevation="2dp"
+                        android:hint="Company Name"
                         android:paddingVertical="7dp"
                         android:paddingStart="30dp"
-                        android:hint="Company Name"
                         android:textColor="@color/edittext_font"
                         android:textColorHint="@color/Hintcolor"
-                        android:textSize="25sp"
-                        android:layout_marginTop="9dp"/>
+                        android:textSize="25sp" />
 
                     <EditText
                         android:id="@+id/catagory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
                         android:background="@drawable/rounded_corner_edittext"
                         android:elevation="2dp"
+                        android:hint="Category"
                         android:paddingVertical="7dp"
                         android:paddingStart="30dp"
-                        android:hint="Category"
                         android:textColor="@color/edittext_font"
                         android:textColorHint="@color/Hintcolor"
-                        android:textSize="25sp"
-                        android:layout_marginTop="9dp"/>
+                        android:textSize="25sp" />
+
                     <EditText
                         android:id="@+id/description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
                         android:background="@drawable/rounded_corner_edittext"
                         android:elevation="2dp"
+                        android:hint="Description"
                         android:paddingVertical="7dp"
                         android:paddingStart="30dp"
-                        android:hint="Description"
                         android:textColor="@color/edittext_font"
                         android:textColorHint="@color/Hintcolor"
-                        android:textSize="25sp"
-                        android:layout_marginTop="9dp"/>
+                        android:textSize="25sp" />
+
                     <EditText
                         android:id="@+id/map"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
                         android:background="@drawable/rounded_corner_edittext"
                         android:elevation="2dp"
+                        android:hint="Map Link"
                         android:paddingVertical="7dp"
                         android:paddingStart="30dp"
-                        android:hint="Map Link"
                         android:textColor="@color/edittext_font"
                         android:textColorHint="@color/Hintcolor"
-                        android:textSize="25sp"
-                        android:layout_marginTop="9dp"/>
+                        android:textSize="25sp" />
+
                     <Button
                         android:id="@+id/firstDetailsNextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
                         android:background="@drawable/rounded_corner_button"
-                        android:text="Next"
-                        android:textColor="@color/white"
-                        app:backgroundTint="@color/secondary_blue"
                         android:paddingHorizontal="50dp"
                         android:paddingVertical="5dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_gravity="center_horizontal"/>
+                        android:text="Next"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/secondary_blue" />
 
 
                 </LinearLayout>

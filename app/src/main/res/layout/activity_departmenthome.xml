@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/primer_orange"
-            app:title="Title"
-            android:elevation="4dp" />
+            android:elevation="4dp"
+            app:title="Title" />
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -33,10 +33,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:headerLayout="@layout/dept_nav_header"
-        app:menu="@menu/deptdrawer_menu"
         android:background="@color/secondary_blue"
-        app:itemTextColor="@color/white"/>
+        app:headerLayout="@layout/dept_nav_header"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/deptdrawer_menu" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -25,38 +25,38 @@
         android:id="@+id/newCustName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="45dp"
         android:background="@drawable/add_customer_popup_background"
         android:hint="Name"
+        android:paddingVertical="5dp"
         android:paddingStart="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        android:layout_marginHorizontal="20dp"
-        android:paddingVertical="5dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/newCustPlace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/add_customer_popup_background"
         android:hint="Place"
+        android:paddingVertical="5dp"
         android:paddingStart="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/newCustName"
-        android:layout_marginHorizontal="20dp"
-        android:paddingVertical="5dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/newCustName" />
 
     <EditText
         android:id="@+id/newCustAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/add_customer_popup_background"
         android:hint="Age"
+        android:paddingVertical="5dp"
         android:paddingStart="25dp"
         app:layout_constraintTop_toBottomOf="@+id/newCustPlace"
-        tools:layout_editor_absoluteX="5dp"
-        android:layout_marginHorizontal="20dp"
-        android:paddingVertical="5dp"/>
+        tools:layout_editor_absoluteX="5dp" />
 
     <Button
         android:id="@+id/popUpAddNewCust"
