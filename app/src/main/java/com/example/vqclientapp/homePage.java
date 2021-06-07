@@ -55,13 +55,11 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
         SaveId.setDepID(homePage.this, "defaut");
 
 
-
         recyclerView = findViewById(R.id.deptRecycler);
 
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("main").child("company").child(uname).child("department");
         compRef = rootNode.getReference("main/company").child(uname);
-
 
 
         TextView compName, compDesc, compCat;
@@ -129,6 +127,8 @@ public class homePage extends AppCompatActivity implements adapterDepts.deptList
                 SaveId.setIsAdmin(homePage.this, false);
                 Intent goBackToSignin = new Intent(homePage.this, signin.class);
                 startActivity(goBackToSignin);
+                Toast.makeText(homePage.this, "Logging out", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }

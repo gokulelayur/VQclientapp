@@ -53,10 +53,9 @@ public class signin extends AppCompatActivity {
                     username = UserNameView.getText().toString();
                     passwd = pswd.getText().toString();
 
-                    if(username.isEmpty() || passwd.isEmpty()){
+                    if (username.isEmpty() || passwd.isEmpty()) {
                         Toast.makeText(signin.this, "UserName or Password cannot be Empty", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
 
                         int count = 0;
                         for (char c : username.toCharArray()) {
@@ -134,23 +133,21 @@ public class signin extends AppCompatActivity {
             });
 
 
-        }
-        else {
+        } else {
 
             // AUTO LOGIN
-            if(SaveId.getIsAdmin(signin.this)==true) {
+            if (SaveId.getIsAdmin(signin.this) == true) {
 
-                loadingScreen.startloading(signin.this,"loading");
+                loadingScreen.startloading(signin.this, "loading");
 
                 // COMPANY ADMIN AUTO LOGIN
                 Intent companySigninSuccessful = new Intent(signin.this, homePage.class);
                 startActivity(companySigninSuccessful);
                 Toast.makeText(signin.this, "Company Signed in Successfully", Toast.LENGTH_SHORT).show();
                 finish();
-            }
-            else {
+            } else {
 
-                loadingScreen.startloading(signin.this,"loading");
+                loadingScreen.startloading(signin.this, "loading");
 
                 // DEPARTMENT AUTO LOGIN
 

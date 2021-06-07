@@ -6,199 +6,433 @@
     android:layout_height="match_parent"
     tools:context=".addDepartment">
 
-
     <LinearLayout
-        android:id="@+id/ogDName_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Department Name : " />
-
-        <EditText
-            android:id="@+id/ogDeptName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/maxtokens_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ogDName_layout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Maximum Tokens : " />
-
-        <EditText
-            android:id="@+id/maxTokens"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/deptDescription_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/maxtokens_layout"
+        android:layout_height="match_parent"
+        android:background="@color/primer_orange"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description : " />
-
-        <EditText
-            android:id="@+id/deptDescription"
+        <com.airbnb.lottie.LottieAnimationView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/starttime_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/deptDescription_layout">
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            app:lottie_rawRes="@raw/inext5"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start Time : " />
-
-        <EditText
-            android:id="@+id/startTime"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="time" />
+            android:layout_height="match_parent"
+            android:text="ADD DEPARTMENT"
+            android:textSize="25sp"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:textColor="@color/quartGrey"
+            android:background="@color/secondary_blue"
+            android:layout_weight="2.7"
+            android:gravity="center"/>
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/endtime_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/starttime_layout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="End Time : " />
-
-        <EditText
-            android:id="@+id/endtime"
+        //BOTTOM RECTANGLE
+             <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="time|datetime" />
+            android:layout_height="match_parent"
+                 android:layout_weight="1">
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/avgtime_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/endtime_layout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Avg Time (Mins): " />
-
-        <EditText
-            android:id="@+id/avgtime"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_height="match_parent"
+
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:scrollbars="vertical">
 
 
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/dname_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/avgtime_layout">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Department ID : " />
+            //SIGNUP
 
-        <EditText
-            android:id="@+id/deptID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
 
-    </LinearLayout>
-    //id but saved in name
-    <LinearLayout
-        android:id="@+id/deptPassword_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dname_layout">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password " />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="top"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="15dp">
 
-        <EditText
-            android:id="@+id/deptPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword" />
 
-    </LinearLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:id="@+id/deptConfirmPassword_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/deptPassword_layout">
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="Department Name"
+                            android:textColor="@color/black"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Confirm Password : " />
+                        <EditText
+                            android:id="@+id/ogDeptName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/add_dept_edit_text"
+                            android:elevation="2dp"
+                            android:paddingVertical="7dp"
+                            android:paddingStart="30dp"
+                            android:textColor="@color/edittext_font"
+                            android:textSize="25sp"
+                            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-        <EditText
-            android:id="@+id/deptConfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword" />
 
-    </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/button_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/deptConfirmPassword_layout"
-        android:layout_marginTop="100px"
-        android:gravity="center">
 
-<!--        <Button-->
-<!--            android:id="@+id/addMoreDeptButt"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:text="Add more"-->
-<!--            android:textStyle="bold" />-->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
 
-        <Button
-            android:id="@+id/doneDeptDetailsbutt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="Done"
-            android:textStyle="bold" />
-    </LinearLayout>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="Description"
+                            android:textColor="@color/black"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/deptDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@drawable/add_dept_edit_text"
+                            android:elevation="2dp"
+                            android:paddingVertical="7dp"
+                            android:paddingStart="30dp"
+                            android:textColor="@color/edittext_font"
+                            android:textSize="25sp"
+                            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+                        <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="Max Tokens"
+                            android:textColor="@color/black"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/maxTokens"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/add_dept_edit_text"
+                            android:elevation="2dp"
+                            android:paddingVertical="7dp"
+                            android:paddingStart="30dp"
+                            android:textColor="@color/edittext_font"
+                            android:textSize="25sp"
+                            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="Start Time"
+                            android:textColor="@color/black"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/startTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/add_dept_edit_text"
+                            android:elevation="2dp"
+                            android:paddingVertical="7dp"
+                            android:paddingStart="30dp"
+                            android:textColor="@color/edittext_font"
+                            android:textSize="25sp"
+                            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="End Time"
+                            android:textColor="@color/black"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/endtime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/add_dept_edit_text"
+                            android:elevation="2dp"
+                            android:paddingVertical="7dp"
+                            android:paddingStart="30dp"
+                            android:textColor="@color/edittext_font"
+                            android:textSize="25sp"
+                            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="Avg Time"
+                            android:textColor="@color/black"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/avgtime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/add_dept_edit_text"
+                            android:elevation="2dp"
+                            android:paddingVertical="7dp"
+                            android:paddingStart="30dp"
+                            android:textColor="@color/edittext_font"
+                            android:textSize="25sp"
+                            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/dept_credential_background"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout10"
+                        android:paddingBottom="20dp"
+                        android:paddingHorizontal="10dp">
+
+                        <TextView
+                            android:id="@+id/textView17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Credentials"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintTop_toBottomOf="@+id/textView17"
+                            >
+
+                            <TextView
+                                android:id="@+id/textView14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="Dep ID"
+                                android:textColor="@color/white"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <EditText
+                                android:id="@+id/deptID"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/add_dept_edit_text"
+                                android:elevation="2dp"
+                                android:paddingVertical="7dp"
+                                android:paddingStart="30dp"
+                                android:textColor="@color/edittext_font"
+                                android:textSize="25sp"
+                                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout11">
+
+                            <TextView
+                                android:id="@+id/textView15"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="Password"
+                                android:textColor="@color/white"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <EditText
+                                android:id="@+id/deptPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/add_dept_edit_text"
+                                android:elevation="2dp"
+                                android:inputType="textPassword"
+                                android:paddingVertical="7dp"
+                                android:paddingStart="30dp"
+                                android:textColor="@color/edittext_font"
+                                android:textSize="25sp"
+                                app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout12">
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="Confirm Password"
+                                android:textColor="@color/white"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <EditText
+                                android:id="@+id/deptConfirmPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/add_dept_edit_text"
+                                android:elevation="2dp"
+                                android:inputType="textPassword"
+                                android:paddingVertical="7dp"
+                                android:paddingStart="30dp"
+                                android:textColor="@color/edittext_font"
+                                android:textSize="25sp"
+                                app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <Button
+                        android:id="@+id/doneDeptDetailsbutt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/rounded_corner_button"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="5dp"
+                        android:text="Done"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/secondary_blue"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout15" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>
 </RelativeLayout>
