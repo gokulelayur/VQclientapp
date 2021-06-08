@@ -24,6 +24,7 @@ import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import com.example.vqclientapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -40,13 +41,14 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public class homeFragment extends Fragment {
 
     RecyclerView recyclerView;
     adapterQueueRecycler adapterQueueRecycler;
-    TextView tokName,tokPlace,tokAge,emptyRecycler;
+    TextView tokName, tokPlace, tokAge, emptyRecycler;
 
     token currentToken = new token();
     ArrayList<Integer> queue = new ArrayList<>();
@@ -63,8 +65,7 @@ public class homeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-
-                loadingScreen.startloading(getActivity(),"Loading");        //LOADING SCREEN STARTED
+        loadingScreen.startloading(getActivity(), "Loading");        //LOADING SCREEN STARTED
 
 
         TextView currentTokenDisp = view.findViewById(R.id.display_current_token);
@@ -81,11 +82,11 @@ public class homeFragment extends Fragment {
         ref = thisDeptRef.child("TOKEN");
 
 
-        tokName=view.findViewById(R.id.currentTokenName);
-        tokPlace=view.findViewById(R.id.currentTokenPlace);
-        tokAge=view.findViewById(R.id.currentTokenAge);
+        tokName = view.findViewById(R.id.currentTokenName);
+        tokPlace = view.findViewById(R.id.currentTokenPlace);
+        tokAge = view.findViewById(R.id.currentTokenAge);
 
-        emptyRecycler=view.findViewById(R.id.recyclerIsEmptyText);
+        emptyRecycler = view.findViewById(R.id.recyclerIsEmptyText);
         //----------QUEUE RECYCLER UPDATER------------------------------------------------------------------------
 
 
@@ -122,7 +123,6 @@ public class homeFragment extends Fragment {
                                 adapterQueueRecycler.notifyDataSetChanged();
 
 
-
                                 //
 
 
@@ -137,10 +137,9 @@ public class homeFragment extends Fragment {
                     }
                 }
 
-                if(!tokenArrayList.isEmpty()){
+                if (!tokenArrayList.isEmpty()) {
                     emptyRecycler.setVisibility(View.GONE);
-                }
-                else {
+                } else {
                     emptyRecycler.setVisibility(View.VISIBLE);
                 }
                 loadingScreen.stoploading();
@@ -163,17 +162,32 @@ public class homeFragment extends Fragment {
 
                 if (queue.size() >= 1) {
 
+
+                    Map<String, Object> mp = new HashMap<>();
+                    mp.put("deptId", SaveId.getDepID(getContext()));
+                    mp.put("companyId", SaveId.getId(getContext()));
+
                     Query query = ref.orderByChild("tokenNo").equalTo(queue.get(0));
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                            String key = snapshot.getKey();
-                            FirebaseDatabase.getInstance().getReference("main/pastTokens").setValue(snapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                    Toast.makeText(getContext(), "Done Copiying", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+
+
+                            for (DataSnapshot snap : snapshot.getChildren()) {
+                                String tokenId = snap.getKey();
+                                String userId = Objects.requireNonNull(snap.child("userId").getValue()).toString();
+
+                                FirebaseDatabase.getInstance().getReference("main/pastTokens").child(tokenId).setValue(snap.getValue()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        FirebaseDatabase.getInstance().getReference("main/pastTokens").child(tokenId).child("companyId").setValue(SaveId.getId(getContext()));
+                                        FirebaseDatabase.getInstance().getReference("main/user").child(userId).child("pToken").child(tokenId).removeValue();
+
+                                    }
+                                });
+
+
+                            }
                         }
 
                         @Override
@@ -213,35 +227,38 @@ public class homeFragment extends Fragment {
         passTokenButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int val = queue.get(0);
-                queue.remove(0);
+
+                if (queue.size() > 1) {
+                    int val = queue.get(0);
+                    queue.remove(0);
 
 
-                //----------BUFFER ALGORITHM------------------------------------------------------------------------
+                    //----------BUFFER ALGORITHM------------------------------------------------------------------------
 
-                Python py = Python.getInstance();
-                PyObject pyObject = py.getModule("buggerAlgorithm");
-                String buf = pyObject.callAttr("bufferAlgo", val, 3, queue.toString()).toString();
-                // the argument=> 3 here is the no. of person after which late comer enters
+                    Python py = Python.getInstance();
+                    PyObject pyObject = py.getModule("buggerAlgorithm");
+                    String buf = pyObject.callAttr("bufferAlgo", val, 3, queue.toString()).toString();
+                    // the argument=> 3 here is the no. of person after which late comer enters
 
-                String[] strBuffer = buf.substring(1, buf.length() - 1).split(",");
-                ArrayList<Integer> newBuffer = new ArrayList<>();
-                for (String i : strBuffer) {
+                    String[] strBuffer = buf.substring(1, buf.length() - 1).split(",");
+                    ArrayList<Integer> newBuffer = new ArrayList<>();
+                    for (String i : strBuffer) {
 
-                    newBuffer.add(Integer.parseInt(i.replaceAll(" ", "")));
+                        newBuffer.add(Integer.parseInt(i.replaceAll(" ", "")));
+                    }
+
+                    //-----------END OF BUFFER ALGORITHM----------------------------------------------------------------
+                    int i = 0;
+                    Map<String, Object> buffMap = new HashMap<>();
+                    for (int k : newBuffer) {
+                        i += 1;
+                        buffMap.put(String.valueOf(i), k);
+                    }
+                    reference.removeValue();
+                    reference.updateChildren(buffMap);
+                    Toast.makeText(getContext(), "Customer Rearranged Successfully", Toast.LENGTH_SHORT).show();
+
                 }
-
-                //-----------END OF BUFFER ALGORITHM----------------------------------------------------------------
-                int i = 0;
-                Map<String, Object> buffMap = new HashMap<>();
-                for (int k : newBuffer) {
-                    i += 1;
-                    buffMap.put(String.valueOf(i), k);
-                }
-                reference.removeValue();
-                reference.updateChildren(buffMap);
-                Toast.makeText(getContext(), "Customer Rearranged Successfully", Toast.LENGTH_SHORT).show();
-
             }
         });
 

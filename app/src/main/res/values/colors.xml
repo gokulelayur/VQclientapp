@@ -12,7 +12,7 @@
 
 
 
-    <color name="primer_orange">#FF5252</color>
+        <color name="primer_orange">#FF5252</color>
     <color name="secondary_blue">#30475E</color>
     <color name="tertiary_white">#F4F4F4</color>
     <color name="edittext_font">#222831</color>

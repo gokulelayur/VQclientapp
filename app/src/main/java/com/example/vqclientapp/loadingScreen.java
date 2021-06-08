@@ -20,15 +20,15 @@ public  class loadingScreen {
         View view=inflater.inflate(R.layout.loading_screen,null);
         view.setClipToOutline(true);
 
-//        TextView loadingText;
-//        loadingText= view.findViewById(R.id.loadingText);
-//        loadingText.setText(text);
+        TextView loadingText;
+        loadingText= view.findViewById(R.id.loadingText);
+        loadingText.setText(text);
 
         builder.setView(view);
         builder.setCancelable(false);
 
         dialog=builder.create();
-//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
         dialog.setContentView(R.layout.loading_screen);
